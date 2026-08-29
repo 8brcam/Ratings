@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cueverse Player Card Showcase</title>
+    <style>
+        :root {
+            --bg-color: #02040a;
+            --panel-bg: #0b0f19;
+            --text-color: #f8fafc;
+            
+            /* High-fidelity ultimate team style base gradients */
+            --fc-gold-base: linear-gradient(180deg, #ffd700 0%, #b8860b 60%, #4a3200 100%);
+            --fc-silver-base: linear-gradient(180deg, #ffffff 0%, #94a3b8 60%, #1e293b 100%);
+            --fc-bronze-base: linear-gradient(180deg, #ffedd5 0%, #b45309 60%, #431407 100%);
+            
+            /* Hyper-Vibrant Moving Blue Neon Border Palette */
+            --neon-blue-glow: 0 0 25px rgba(0, 229, 255, 0.6), 0 0 10px rgba(0, 102, 255, 0.4);
+            --neon-blue-gradient: linear-gradient(135deg, #00f0ff 0%, #0066ff 50%, #00f0ff 100%);
+        }
+
+        body {
+            font-family: "Arial Black", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+            background-color: var(--panel-bg);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            max-width: 900px;
+            width: auto;
+            transition: all 0.3s ease;
+        }
+
+        /* --- THE PREMIUM SHIELD ARCHITECTURE --- */
+        .card-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Background Wrapper Mask dedicated entirely to holding the Moving Neon aura */
+        .neon-border-wrapper {
+            position: relative;
+            width: 278px;
+            height: 398px;
+            background: var(--neon-blue-gradient);
+            background-size: 200% 200%;
+            box-shadow: var(--neon-blue-glow);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: neonPulse 4s linear infinite;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            
+            /* Sharp authentic shield cutout layout */
+            clip-path: polygon(0% 10%, 50% 0%, 100% 10%, 100% 75%, 50% 100%, 0% 75%);
+        }
+
+        .neon-border-wrapper:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 0 40px rgba(0, 229, 255, 0.8), 0 0 20px rgba(0, 102, 255, 0.6);
+        }
+        /* Main card body nested perfectly within the pulsing frame wrapper */
+        .fut-card {
+            position: relative;
+            width: 272px; /* 3px thin inset to allow blue line transparency */
+            height: 392px;
+            background: var(--fc-gold-base);
+            color: #080602;
+            display: flex;
+            flex-direction: column;
+            padding: 3px;
+            box-sizing: border-box;
+            transition: background 0.3s;
+            z-index: 2;
+            
+            clip-path: polygon(0% 10%, 50% 0%, 100% 10%, 100% 75%, 50% 100%, 0% 75%);
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            clip-path: polygon(0% 10%, 50% 0%, 100% 10%, 100% 75%, 50% 100%, 0% 75%);
+            display: flex;
+            flex-direction: column;
+            padding: 25px 8px 15px 8px;
+            box-sizing: border-box;
+            z-index: 2;
+        }
+
+        /* Moving Neon Wave & Breathing Pulse Animation Loops */
+        @keyframes neonPulse {
+            0% {
+                background-position: 0% 50%;
+                filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.5));
+            }
+            50% {
+                background-position: 100% 50%;
+                filter: drop-shadow(0 0 30px rgba(0, 102, 255, 0.8));
+            }
+            100% {
+                background-position: 0% 50%;
+                filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.5));
+            }
+        }
+
+        /* Top Module: Vertical Left Control Deck & Player Silhouette Portrait */
+        .card-top {
+            display: flex;
+            height: 155px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .badge-ovr {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            width: 25%;
+            gap: 2px;
+            padding-top: 5px;
+            border-right: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .ovr-txt {
+            font-size: 44px;
+            font-weight: 900;
+            line-height: 38px;
+            letter-spacing: -2px;
+            color: #000;
+        }
+
+        .pos-txt {
+            font-size: 13px;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: #1a1303;
+        }
+
+        .flag-img {
+            width: 24px;
+            height: 15px;
+            object-fit: cover;
+            border: 1px solid rgba(0, 0, 0, 0.25);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 2px 0;
+        }
+
+        .club-icon {
+            width: 20px;
+            height: 20px;
+            opacity: 0.85;
+            margin-top: 2px;
+        }
+
+        .avatar-placeholder {
+            width: 75%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            overflow: hidden;
+        }
+
+        .avatar-placeholder svg, .avatar-placeholder img {
+            width: 90%;
+            height: auto;
+            max-height: 135px;
+            object-fit: contain;
+            object-position: bottom center;
+        }
+
+        .player-name {
+            text-align: center;
+            font-size: 21px;
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 2px 0;
+            margin: 8px 10px 15px 10px;
+            letter-spacing: -0.5px;
+            color: #000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+        }
+
+        /* Single Straight Horizontal Row Stat Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            padding: 0 2px;
+            margin-top: 4px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.2;
+            border-right: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            font-weight: 800;
+            color: #241a05;
+            opacity: 0.75;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .stat-val {
+            font-size: 17px;
+            font-weight: 900;
+            color: #000;
+        }
+
+        /* --- CONTROLS EDIT PANEL --- */
+        .controls-panel {
+            display: none;
+            flex-direction: column;
+            gap: 14px;
+            width: 320px;
+            border-left: 1px solid #374151;
+            padding-left: 30px;
+        }
+
+        h2 {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            margin-top: 0;
+            font-size: 24px;
+            border-bottom: 1px solid #475569;
+            padding-bottom: 8px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        label {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: #94a3b8;
+        }
+
+        input[type="text"], select, textarea {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #0f172a;
+            border: 1px solid #475569;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .btn-upload {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            color: white;
+            border: none;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .slider-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        input[type="range"] {
+            flex: 1;
+            accent-color: #dca021;
+            cursor: pointer;
+        }
+
+        .slider-val {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            width: 30px;
+            text-align: right;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .controls-panel {
+                width: 100%;
+                border-left: none;
+                border-top: 1px solid #374151;
+                padding-left: 0;
+                padding-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card-container">
+        <div class="neon-border-wrapper" id="glowWrapper">
+            <div class="fut-card" id="cardElement" style="background: var(--fc-gold-base);">
+                <div class="card-inner">
+                    <div class="card-top">
+                        <div class="badge-ovr">
+                            <span class="ovr-txt">85</span>
+                            <span class="pos-txt">CUE</span>
+                            <img src="https://netlify.app{cleancountrycode}.png/" class="flag-img">
+                            <svg class="club-icon" viewBox="0 0 100 100" xmlns="http://w3.org"><circle cx="50" cy="50" r="45" fill="#000"/><circle cx="50" cy="50" r="20" fill="#fff"/></svg>
+                        </div>
+                        <div class="avatar-placeholder" id="avatarPlaceholder"><img src="data:image/png;base64,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"></div>
+                    </div>
+                    <div class="player-name">Bren</div>
+                    <div class="stats-grid">
+                        <div class="stat-item"><span class="stat-label">AGG</span><span class="stat-val">85</span></div>
+                        <div class="stat-item"><span class="stat-label">CTR</span><span class="stat-val">85</span></div>
+                        <div class="stat-item"><span class="stat-label">SEL</span><span class="stat-val">85</span></div>
+                        <div class="stat-item"><span class="stat-label">POT</span><span class="stat-val">85</span></div>
+                        <div class="stat-item"><span class="stat-label">SAF</span><span class="stat-val">85</span></div>
+                        <div class="stat-item"><span class="stat-label">TEM</span><span class="stat-val">85</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="controls-panel" id="adminPanel" style="display: none;">
+        
+        <h2>Cueverse Card Editor</h2>
+        
+        <div class="input-group">
+            <label for="nameInput">Player Name</label>
+            <input type="text" id="nameInput" value="PLAYER NAME" maxlength="14">
+        </div>
+
+        <div class="input-group">
+            <label>Player Portrait Picture</label>
+            <button class="btn-upload" style="background-color: #2563eb;" onclick="document.getElementById('imageLoader').click()">Choose Image File</button>
+            <input type="file" id="imageLoader" accept="image/*" style="display: none;">
+        </div>
+
+        <div class="input-group">
+            <label for="countryInput">Player Nationality</label>
+            <select id="countryInput">
+                <option value="gb">United Kingdom</option>
+                <option value="us">United States</option>
+                <option value="br">Brazil</option>
+                <option value="de">Germany</option>
+                <option value="fr">France</option>
+                <option value="es">Spain</option>
+                <option value="cn">China</option>
+                <option value="jp">Japan</option>
+                <option value="ca">Canada</option>
+                <option value="au">Australia</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="tierInput">Card Tier Theme</label>
+            <select id="tierInput">
+                <option value="gold">Gold Premium</option>
+                <option value="silver">Silver Premium</option>
+                <option value="bronze">Bronze Premium</option>
+            </select>
+        </div>
+
+        <!-- Metric Range Sliders -->
+        <div class="input-group">
+            <label for="aggInput">Aggression (AGG)</label>
+            <div class="slider-row">
+                <input type="range" id="aggInput" min="10" max="99" value="85" style="accent-color: rgb(220, 160, 33);">
+                <span class="slider-val" id="aggVal">85</span>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label for="ctrInput">Control (CTR)</label>
+            <div class="slider-row">
+                <input type="range" id="ctrInput" min="10" max="99" value="85" style="accent-color: rgb(220, 160, 33);">
+                <span class="slider-val" id="ctrVal">85</span>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label for="selInput">Shot Selection (SEL)</label>
+            <div class="slider-row">
+                <input type="range" id="selInput" min="10" max="99" value="85" style="accent-color: rgb(220, 160, 33);">
+                <span class="slider-val" id="selVal">85</span>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label for="potInput">Potting (POT)</label>
+            <div class="slider-row">
+                <input type="range" id="potInput" min="10" max="99" value="85" style="accent-color: rgb(220, 160, 33);">
+                <span class="slider-val" id="potVal">85</span>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label for="safInput">Safety (SAF)</label>
+            <div class="slider-row">
+                <input type="range" id="safInput" min="10" max="99" value="85" style="accent-color: rgb(220, 160, 33);">
+                <span class="slider-val" id="safVal">85</span>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label for="temInput">Temperament (TEM)</label>
+            <div class="slider-row">
+                <input type="range" id="temInput" min="10" max="99" value="85" style="accent-color: rgb(220, 160, 33);">
+                <span class="slider-val" id="temVal">85</span>
+            </div>
+        </div>
+
+        <!-- Export Deployment Block -->
+        <div class="input-group" style="margin-top: 10px; border-top: 1px solid #374151; padding-top: 15px;">
+            <button class="btn-upload" style="background-color: #10b981;" onclick="generateBakedCode()">Get Deployment Code</button>
+        </div>
+        
+        <!-- Output Code Box Window Display -->
+        <div class="input-group" id="outputArea" style="display: none; margin-top: 10px;">
+            <label>Copy this text and paste it to your index.html file:</label>
+            <textarea id="codeBox" rows="6" style="font-family: monospace; font-size: 11px;" readonly=""></textarea>
+        </div>
+    
+    </div>
+</div>
+<script>
+    // Map input components
+    const nameInput = document.getElementById('nameInput');
+    const countryInput = document.getElementById('countryInput');
+    const tierInput = document.getElementById('tierInput');
+    const aggInput = document.getElementById('aggInput');
+    const ctrInput = document.getElementById('ctrInput');
+    const selInput = document.getElementById('selInput');
+    const potInput = document.getElementById('potInput');
+    const safInput = document.getElementById('safInput');
+    const temInput = document.getElementById('temInput');
+    const imageLoader = document.getElementById('imageLoader');
+    const adminPanel = document.getElementById('adminPanel');
+
+    // Map card display items
+    const cardName = document.getElementById('cardName');
+    const cardFlag = document.getElementById('cardFlag');
+    const cardElement = document.getElementById('cardElement');
+    const avatarContainer = document.getElementById('avatarPlaceholder');
+    
+    const cardOvr = document.getElementById('cardOvr');
+    const cardAgg = document.getElementById('cardAgg');
+    const cardCtr = document.getElementById('cardCtr');
+    const cardSel = document.getElementById('cardSel');
+    const cardPot = document.getElementById('cardPot');
+    const cardSaf = document.getElementById('cardSaf');
+    const cardTem = document.getElementById('cardTem');
+
+    const aggVal = document.getElementById('aggVal');
+    const ctrVal = document.getElementById('ctrVal');
+    const selVal = document.getElementById('selVal');
+    const potVal = document.getElementById('potVal');
+    const safVal = document.getElementById('safVal');
+    const temVal = document.getElementById('temVal');
+
+    // --- SECRET URL VISIBILITY ENGINE ---
+    function checkUrlPermissions() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('edit') === 'true') {
+            adminPanel.style.display = 'flex';
+        } else {
+            adminPanel.style.display = 'none';
+        }
+    }
+
+    // Image Upload Engine Logic
+    imageLoader.addEventListener('change', function(e) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            avatarContainer.innerHTML = '';
+            const img = document.createElement('img');
+            img.src = event.target.result;
+            avatarContainer.appendChild(img);
+        }
+        if(e.target.files && e.target.files[0]) {
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    });
+
+    // Live mathematical calculation mapping
+    function updateOverall() {
+        const agg = parseInt(aggInput.value) || 0;
+        const ctr = parseInt(ctrInput.value) || 0;
+        const sel = parseInt(selInput.value) || 0;
+        const pot = parseInt(potInput.value) || 0;
+        const saf = parseInt(safInput.value) || 0;
+        const tem = parseInt(temInput.value) || 0;
+        
+        const average = Math.round((agg + ctr + sel + pot + saf + tem) / 6);
+        cardOvr.textContent = average;
+    }
+
+    // Main layout renderer pipeline with Theme Control
+    function updateCard() {
+        cardName.textContent = nameInput.value || "PLAYER NAME";
+        
+        // CRITICAL FIX: Forcing country code to lowercase so the flag API matches perfectly
+        const cleanCountryCode = String(countryInput.value).toLowerCase();
+        cardFlag.src = `https://netlify.app{cleanCountryCode}.png`;
+        
+        cardAgg.textContent = aggInput.value;
+        aggVal.textContent = aggInput.value;
+        
+        cardCtr.textContent = ctrInput.value;
+        ctrVal.textContent = ctrInput.value;
+        
+        cardSel.textContent = selInput.value;
+        selVal.textContent = selInput.value;
+        
+        cardPot.textContent = potInput.value;
+        potVal.textContent = potInput.value;
+        
+        cardSaf.textContent = safInput.value;
+        safVal.textContent = safInput.value;
+        
+        cardTem.textContent = temInput.value;
+        temVal.textContent = temInput.value;
+
+        // Visual tier theme and dynamic shadow glow adjustment
+        if (tierInput.value === 'gold') {
+            cardElement.style.background = 'var(--fc-gold-base)';
+            document.querySelectorAll('input[type="range"]').forEach(el => el.style.accentColor = '#dca021');
+        } else if (tierInput.value === 'silver') {
+            cardElement.style.background = 'var(--fc-silver-base)';
+            document.querySelectorAll('input[type="range"]').forEach(el => el.style.accentColor = '#64748b');
+        } else if (tierInput.value === 'bronze') {
+            cardElement.style.background = 'var(--fc-bronze-base)';
+            document.querySelectorAll('input[type="range"]').forEach(el => el.style.accentColor = '#b45309');
+        }
+
+        updateOverall();
+    }
+
+    // --- SNAPSHOT DEPLOYMENT EXPORTER ---
+    function generateBakedCode() {
+        const stylesBlock = document.getElementsByTagName('style')[0].outerHTML;
+        const scriptsBlock = document.getElementsByTagName('script')[0].outerHTML;
+        const activeAvatarGraphic = avatarContainer.innerHTML.trim();
+        
+        const bakedHtmlPage = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cueverse Player Card Showcase</title>
+    ${stylesBlock}
+</head>
+<body>
+<div class="container">
+    <div class="card-container">
+        <div class="neon-border-wrapper" id="glowWrapper">
+            <div class="fut-card" id="cardElement" style="background: ${cardElement.style.background};">
+                <div class="card-inner">
+                    <div class="card-top">
+                        <div class="badge-ovr">
+                            <span class="ovr-txt">${cardOvr.textContent}</span>
+                            <span class="pos-txt">CUE</span>
+                            <img src="${cardFlag.src}" class="flag-img">
+                            <svg class="club-icon" viewBox="0 0 100 100" xmlns="http://w3.org"><circle cx="50" cy="50" r="45" fill="#000"/><circle cx="50" cy="50" r="20" fill="#fff"/></svg>
+                        </div>
+                        <div class="avatar-placeholder" id="avatarPlaceholder">${activeAvatarGraphic}</div>
+                    </div>
+                    <div class="player-name">${cardName.textContent}</div>
+                    <div class="stats-grid">
+                        <div class="stat-item"><span class="stat-label">AGG</span><span class="stat-val">${cardAgg.textContent}</span></div>
+                        <div class="stat-item"><span class="stat-label">CTR</span><span class="stat-val">${cardCtr.textContent}</span></div>
+                        <div class="stat-item"><span class="stat-label">SEL</span><span class="stat-val">${cardSel.textContent}</span></div>
+                        <div class="stat-item"><span class="stat-label">POT</span><span class="stat-val">${cardPot.textContent}</span></div>
+                        <div class="stat-item"><span class="stat-label">SAF</span><span class="stat-val">${cardSaf.textContent}</span></div>
+                        <div class="stat-item"><span class="stat-label">TEM</span><span class="stat-val">${cardTem.textContent}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="controls-panel" id="adminPanel" style="display: none;">
+        ${adminPanel.innerHTML}
+    </div>
+</div>
+${scriptsBlock}
+</body>
+</html>`;
+
+        document.getElementById('codeBox').value = bakedHtmlPage;
+        document.getElementById('outputArea').style.display = 'block';
+        document.getElementById('codeBox').select();
+    }
+
+    // Input monitoring tracking listeners
+    nameInput.addEventListener('input', updateCard);
+    countryInput.addEventListener('change', updateCard);
+    tierInput.addEventListener('change', updateCard);
+    aggInput.addEventListener('input', updateCard);
+    ctrInput.addEventListener('input', updateCard);
+    selInput.addEventListener('input', updateCard);
+    potInput.addEventListener('input', updateCard);
+    safInput.addEventListener('input', updateCard);
+    temInput.addEventListener('input', updateCard);
+
+    // Initial page load triggers
+    checkUrlPermissions();
+    updateCard();
+</script>
+</body>
+</html>

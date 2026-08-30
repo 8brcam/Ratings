@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Team 36-Card Widescreen Grid</title>
+    <title>Ultimate Team Grid Engine</title>
     <style id="themeStylesheet">
         :root {
             --bg-color: #02040a;
@@ -32,20 +31,21 @@
             overflow-y: auto; 
         }
 
-        /* --- THE EVEN SHIELD MULTI-CARD WRAPPER GRID --- */
+        /* Your exact original container layout running across a multi-card grid */
         .card-container {
             display: flex;
-            flex-direction: row; 
-            flex-wrap: wrap; /* Automatically moves overflowing cards down to new rows */
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 45px 25px; /* Perfect spacing so your cards never collide on 1.14x zoom */
             justify-content: center;
             align-items: center;
-            gap: 60px 40px; /* Big gap stops 3D hover actions from colliding or clipping */
             perspective: 1500px;
+            max-width: 1920px;
             width: 100%;
-            max-width: 1920px; 
             margin: 0 auto;
         }
 
+        /* --- THE EVEN SHIELD ARCHITECTURE --- */
         .neon-border-wrapper {
             position: relative;
             width: 278px;
@@ -106,6 +106,7 @@
             mix-blend-mode: color-dodge;
             z-index: 3;
             pointer-events: none;
+            /* Your exact original smooth gloss transition */
             transition: background-position 0.15s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
@@ -207,22 +208,9 @@
         .stat-val { font-size: 22px; font-weight: 900; color: #fff; width: 32px; text-align: left; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
         .stat-label { font-size: 15px; font-weight: 800; color: #ffd84a; text-transform: uppercase; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
         .stats-vertical-divider { width: 2px; height: 68px; background-color: var(--stat-box-border); opacity: 0.75; margin: 0 8px; border-radius: 1px; }
-
-        /* --- CONTROL PANEL SIDEBAR --- */
-        .controls-panel { 
-            display: none; 
-            flex-direction: column; 
-            gap: 14px; 
-            width: 320px; 
-            border-left: 1px solid #374151; 
-            padding-left: 30px; 
-            max-height: 90vh; 
-            overflow-y: auto; 
-        }
     </style>
 </head>
 <body>
-
     <div class="card-container" id="mainCardContainer">
         <div class="neon-border-wrapper"><!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><style id="themeStylesheet">
         :root {
@@ -551,13 +539,13 @@
     </div> <!-- Closes .card-container cleanly below all 36 text markers -->
 
     <script>
-        // Target all slots across your multi-card setup
+        // Finds all wrappers using querySelectorAll instead of breaking on a single query
         const wrappers = document.querySelectorAll('.neon-border-wrapper');
         
         wrappers.forEach(wrapper => {
             const inner = wrapper.querySelector('.card-inner');
             
-            // Skip slots that are empty text strings so the layout engine never crashes
+            // Safety fallback: if you haven't pasted a card inside this slot yet, skip it completely
             if (!wrapper || !inner) return;
 
             // Your exact original buttery 3D interaction logic applied to each slot independently
@@ -567,21 +555,12 @@
                 const y = e.clientY - rect.top;
                 const rx = ((y / rect.height) - 0.5) * -28;
                 const ry = ((x / rect.width) - 0.5) * 28;
-                
-                // Disables animation transitions only while tracking active user cursor path
-                wrapper.style.transition = 'transform 0s linear, box-shadow 0s linear';
-                inner.style.transition = 'background-position 0s linear';
-                
                 wrapper.style.transform = 'scale(1.14) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)';
                 inner.style.setProperty('--gloss-x', (100 - (x / rect.width) * 100) + '%');
                 inner.style.setProperty('--gloss-y', (100 - (y / rect.height) * 100) + '%');
             });
 
             wrapper.addEventListener('mouseleave', () => {
-                // Returns smooth transition easing ONLY when resetting back to center position
-                wrapper.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease';
-                inner.style.transition = 'background-position 0.15s cubic-bezier(0.25, 1, 0.5, 1)';
-                
                 wrapper.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
                 inner.style.setProperty('--gloss-x', '170%');
                 inner.style.setProperty('--gloss-y', '170%');

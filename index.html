@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Ultimate Team 36-Card Matrix</title>
+    <title>Ultimate Team 36-Card Widescreen Grid</title>
     <style id="themeStylesheet">
         :root {
             --bg-color: #02040a;
@@ -11,7 +11,6 @@
             --card-text: #050401;
             --stat-box-border: #946f02;
             --stat-panel-bg: rgba(30, 20, 1, 0.75);
-            /* Dynamic neon border colors */
             --neon-start: #00f0ff;
             --neon-mid: #0066ff;
             --neon-end: #00f0ff;
@@ -22,26 +21,27 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
-            padding: 40px 20px;
+            padding: 60px 40px;
             display: flex;
             justify-content: center;
             align-items: flex-start;
             min-height: 100vh;
             box-sizing: border-box;
-            overflow-y: auto;
+            overflow-y: auto; 
         }
 
         /* --- THE EVEN SHIELD MULTI-CARD WRAPPER GRID --- */
         .card-container {
             display: flex;
             flex-direction: row; 
-            flex-wrap: wrap; /* Allows your cards to wrap down to new rows cleanly */
+            flex-wrap: wrap; 
             justify-content: center;
             align-items: center;
-            gap: 35px 25px; /* Spacing clearance so cards don't overlap on 1.14x hover zoom */
-            perspective: 1500px;
+            /* WIDENED THE GAP FOR ZERO 3D CLIPPING OR STUTTERING */
+            gap: 80px 60px; 
+            perspective: 2000px; /* Enhanced 3D perspective depth */
             width: 100%;
-            max-width: 1920px; 
+            max-width: 2440px; /* Expanded grid container limit */
             margin: 0 auto;
         }
 
@@ -57,7 +57,6 @@
             align-items: center;
             animation: neonPulse 4s linear infinite;
             transform-style: preserve-3d;
-            /* Your exact original smooth reset transition settings */
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
             clip-path: polygon(0% 8%, 20% 0%, 50% 3%, 80% 0%, 100% 8%, 100% 88%, 50% 100%, 0% 88%);
         }
@@ -106,12 +105,111 @@
             mix-blend-mode: color-dodge;
             z-index: 3;
             pointer-events: none;
-            /* Your exact original smooth gloss tracking configuration */
             transition: background-position 0.15s cubic-bezier(0.25, 1, 0.5, 1);
         }
+
+        .card-top {
+            display: flex;
+            height: 135px;
+            width: 100%;
+            margin-top: 5px;
+            position: relative;
+            z-index: 4;
+        }
+
+        .badge-ovr {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            width: 25%;
+            gap: 2px;
+            padding-top: 5px;
+            border-right: 1px solid rgba(0, 0, 0, 0.08);
+            z-index: 4;
+        }
+
+        .ovr-txt {
+            font-size: 46px;
+            font-weight: 900;
+            line-height: 38px;
+            letter-spacing: -2px;
+            color: #050401;
+            text-shadow: 0 1px 1px rgba(255,255,255,0.4);
+        }
+
+        .pos-txt { font-size: 13px; font-weight: 900; text-transform: uppercase; color: #050401; }
+        .club-icon { width: 20px; height: 20px; opacity: 0.85; margin-top: 2px; }
+
+        .avatar-placeholder {
+            width: 75%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            z-index: 4;
+            height: 100%;
+        }
+
+        .avatar-placeholder svg, .avatar-placeholder img {
+            width: 90%;
+            height: auto;
+            max-height: 115px;
+            object-fit: contain;
+            object-position: center center;
+        }
+
+        .name-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 92%;                       
+            margin: 15px auto 0 auto;
+            padding: 4px 0;
+            z-index: 4;
+            background-color: var(--stat-panel-bg); 
+            border: 2px solid var(--stat-box-border); 
+            border-radius: 8px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+            box-sizing: border-box;
+        }
+
+        .player-name {
+            text-align: center;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.2px;
+            margin: 0;
+            padding: 3px 10px;
+            color: #ffffff; 
+            text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.95); 
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px;       
+            width: 92%;               
+            margin: 14px auto 0 auto;
+            z-index: 4; 
+            background-color: var(--stat-panel-bg);
+            border-radius: 8px;
+            border: 2px solid var(--stat-box-border); 
+            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.55);
+            box-sizing: border-box;
+        }
+
+        .stat-column { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+        .stat-item { display: flex; align-items: center; justify-content: flex-start; gap: 10px; line-height: 1.1; width: 100%; }
+        .stat-val { font-size: 22px; font-weight: 900; color: #fff; width: 32px; text-align: left; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
+        .stat-label { font-size: 15px; font-weight: 800; color: #ffd84a; text-transform: uppercase; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
+        .stats-vertical-divider { width: 2px; height: 68px; background-color: var(--stat-box-border); opacity: 0.75; margin: 0 8px; border-radius: 1px; }
     </style>
 </head>
 <body>
+
     <div class="card-container" id="mainCardContainer">
         <div class="neon-border-wrapper"><!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><style id="themeStylesheet">
         :root {
@@ -437,19 +535,17 @@
         <div class="neon-border-wrapper">PASTE_CARD_34_HERE</div>
         <div class="neon-border-wrapper">PASTE_CARD_35_HERE</div>
         <div class="neon-border-wrapper">PASTE_CARD_36_HERE</div>
-    </div> <!-- Closes .card-container safely below all 36 text markers -->
+    </div> <!-- Closes .card-container cleanly below all 36 widescreen slot indicators -->
 
     <script>
-        // Selects all available slots instead of breaking on the first one
         const wrappers = document.querySelectorAll('.neon-border-wrapper');
         
         wrappers.forEach(wrapper => {
             const inner = wrapper.querySelector('.card-inner');
             
-            // CRITICAL ENGINE FIX: Safely skips any slot that doesn't have an editor card pasted inside yet
+            // Safety break catches unpopulated strings to preserve engine stability
             if (!wrapper || !inner) return;
 
-            // Restoring your exact original buttery math equations and smooth layout properties
             wrapper.addEventListener('mousemove', (e) => {
                 const rect = wrapper.getBoundingClientRect();
                 const x = e.clientX - rect.left;
@@ -457,7 +553,7 @@
                 const rx = ((y / rect.height) - 0.5) * -28;
                 const ry = ((x / rect.width) - 0.5) * 28;
                 
-                // Eliminates lag during mouse tracking
+                // Disables transition delays only while tracking the active user cursor path
                 wrapper.style.transition = 'transform 0s linear, box-shadow 0s linear';
                 inner.style.transition = 'background-position 0s linear';
                 
@@ -467,7 +563,7 @@
             });
 
             wrapper.addEventListener('mouseleave', () => {
-                // Smoothly returns back to dead center when you move your mouse away
+                // Returns clean cubic-bezier easing to smooth out center gravity resets
                 wrapper.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease';
                 inner.style.transition = 'background-position 0.15s cubic-bezier(0.25, 1, 0.5, 1)';
                 

@@ -58,6 +58,7 @@
             align-items: center;
             animation: neonPulse 4s linear infinite;
             transform-style: preserve-3d;
+            /* Your exact original smooth reset transition settings */
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
             clip-path: polygon(0% 8%, 20% 0%, 50% 3%, 80% 0%, 100% 8%, 100% 88%, 50% 100%, 0% 88%);
         }
@@ -106,6 +107,7 @@
             mix-blend-mode: color-dodge;
             z-index: 3;
             pointer-events: none;
+            /* Your exact original smooth gloss tracking configuration */
             transition: background-position 0.15s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
@@ -539,31 +541,47 @@
     </div>
 
     <script>
-        // Finds all wrappers using querySelectorAll instead of a single instance selector
-        const wrappers = document.querySelectorAll('.neon-border-wrapper');
-        
-        wrappers.forEach(wrapper => {
+        function attachTiltEffect(wrapper) {
+            if (wrapper.dataset.tiltBound === "true") return;
+            
             const inner = wrapper.querySelector('.card-inner');
-            if (wrapper && inner) {
-                // Your exact tracking arithmetic logic applied inside the isolated card scope
-                wrapper.addEventListener('mousemove', (e) => {
-                    const rect = wrapper.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    const rx = ((y / rect.height) - 0.5) * -28;
-                    const ry = ((x / rect.width) - 0.5) * 28;
-                    wrapper.style.transform = 'scale(1.14) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)';
-                    inner.style.setProperty('--gloss-x', (100 - (x / rect.width) * 100) + '%');
-                    inner.style.setProperty('--gloss-y', (100 - (y / rect.height) * 100) + '%');
-                });
+            if (!inner) return;
+
+            wrapper.dataset.tiltBound = "true";
+
+            wrapper.addEventListener('mousemove', (e) => {
+                const rect = wrapper.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const rx = ((y / rect.height) - 0.5) * -28;
+                const ry = ((x / rect.width) - 0.5) * 28;
                 
-                wrapper.addEventListener('mouseleave', () => {
-                    wrapper.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
-                    inner.style.setProperty('--gloss-x', '170%');
-                    inner.style.setProperty('--gloss-y', '170%');
-                });
-            }
+                // WAKES UP INSTANT GLIDE: Turns off animation delays only while tracking the mouse
+                wrapper.style.transition = 'transform 0s linear, box-shadow 0s linear';
+                
+                wrapper.style.transform = 'scale(1.14) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)';
+                inner.style.setProperty('--gloss-x', (100 - (x / rect.width) * 100) + '%');
+                inner.style.setProperty('--gloss-y', (100 - (y / rect.height) * 100) + '%');
+            });
+
+            wrapper.addEventListener('mouseleave', () => {
+                // WAKES UP ORIGINAL RESET: Safely snaps the card smoothly back to center over 0.4s
+                wrapper.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease';
+                
+                wrapper.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
+                inner.style.setProperty('--gloss-x', '170%');
+                inner.style.setProperty('--gloss-y', '170%');
+            });
+        }
+
+        const containerNode = document.getElementById('mainCardContainer');
+        
+        containerNode.querySelectorAll('.neon-border-wrapper').forEach(attachTiltEffect);
+
+        const layoutObserver = new MutationObserver(() => {
+            containerNode.querySelectorAll('.neon-border-wrapper').forEach(attachTiltEffect);
         });
+        layoutObserver.observe(containerNode, { childList: true, subtree: true });
     </script>
 </body>
 </html>

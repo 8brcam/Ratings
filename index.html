@@ -149,8 +149,8 @@
         .avatar-placeholder {
             width: 75%;
             display: flex;
-            justify-content: center;
-            align-items: flex-end;
+            justify-content: center;   /* Perfectly centers image horizontally */
+            align-items: center;       /* Perfectly centers image vertically */
             overflow: hidden;
             z-index: 4;
             height: 100%;
@@ -161,7 +161,7 @@
             height: auto;
             max-height: 115px;
             object-fit: contain;
-            object-position: bottom center;
+            object-position: center center; /* Precise graphic absolute centering parameter */
         }
 
         .name-box {
@@ -169,7 +169,7 @@
             justify-content: center;
             align-items: center;
             width: 92%;                       
-            margin: 0 auto;                  
+            margin: 15px auto 0 auto;        /* Shifted downwards from the top header */
             padding: 4px 0;
             z-index: 4;
             background-color: var(--stat-panel-bg); 
@@ -187,8 +187,8 @@
             letter-spacing: -0.2px;
             margin: 0;
             padding: 3px 10px;
-            color: #ffffff; /* Symmetrical crisp white font selection */
-            text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.95); /* Deep high-definition background drop shadow */
+            color: #ffffff; 
+            text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.95); 
         }
 
         .stats-grid {
@@ -197,7 +197,7 @@
             align-items: center;
             padding: 10px 16px;       
             width: 92%;               
-            margin: 10px auto 0 auto; 
+            margin: 14px auto 0 auto;        /* Pushed box structure downwards */
             z-index: 4; 
             background-color: var(--stat-panel-bg);
             border-radius: 8px;
@@ -271,7 +271,7 @@
                         <div class="badge-ovr">
                             <span class="ovr-txt" id="cardOvr">85</span>
                             <span class="pos-txt" id="cardPos">CUE</span>
-                            <!-- Clean native unicode vector flag container independent of cross-origin network hosts -->
+                            <!-- Inline text block securely displays flag emojis everywhere automatically -->
                             <span id="cardFlag" style="font-size: 22px; line-height: 1; margin: 4px 0; display: inline-block; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));">🇵🇹</span>
                             <svg class="club-icon" viewBox="0 0 100 100" xmlns="http://w3.org">
                                 <circle cx="50" cy="50" r="45" fill="#000"></circle><circle cx="50" cy="50" r="20" fill="#fff"></circle>
@@ -305,4 +305,25 @@
                 </div>
             </div>
         </div>
-    </body></html>
+    
+        <script>
+            const wrapper = document.querySelector('.neon-border-wrapper');
+            const inner = document.querySelector('.card-inner');
+            if (wrapper && inner) {
+                wrapper.addEventListener('mousemove', (e) => {
+                    const rect = wrapper.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const rx = ((y / rect.height) - 0.5) * -28;
+                    const ry = ((x / rect.width) - 0.5) * 28;
+                    wrapper.style.transform = 'scale(1.14) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)';
+                    inner.style.setProperty('--gloss-x', (100 - (x / rect.width) * 100) + '%');
+                    inner.style.setProperty('--gloss-y', (100 - (y / rect.height) * 100) + '%');
+                });
+                wrapper.addEventListener('mouseleave', () => {
+                    wrapper.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
+                    inner.style.setProperty('--gloss-x', '170%');
+                    inner.style.setProperty('--gloss-y', '170%');
+                });
+            }
+        </script></body></html>

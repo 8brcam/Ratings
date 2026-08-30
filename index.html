@@ -208,7 +208,7 @@
 </head>
 <body>
 
-    <!-- 👇 THIS BOX IS COMPLETELY EMPTY AND WAITING FOR YOUR CARDS 👇 -->
+    <!-- PASTE YOUR CARDS INSIDE THIS CONTAINER IN YOUR EDITOR -->
     <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><style id="themeStylesheet">
         :root {
             --bg-color: #02040a;
@@ -498,33 +498,45 @@
                 });
             }
         </script></body></html>
-    <div class="card-container">
+    <div class="card-container" id="mainCardContainer">
         
     </div>
 
     <script>
-        const wrappers = document.querySelectorAll('.neon-border-wrapper');
-        
-        wrappers.forEach(wrapper => {
+        // Core mouse effect tracking engine
+        function attachTiltEffect(wrapper) {
+            // Prevent double-binding listeners
+            if (wrapper.dataset.tiltBound === "true") return;
+            wrapper.dataset.tiltBound = "true";
+
             const inner = wrapper.querySelector('.card-inner');
-            if (wrapper && inner) {
-                wrapper.addEventListener('mousemove', (e) => {
-                    const rect = wrapper.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    const rx = ((y / rect.height) - 0.5) * -28;
-                    const ry = ((x / rect.width) - 0.5) * 28;
-                    wrapper.style.transform = 'scale(1.14) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)';
-                    inner.style.setProperty('--gloss-x', (100 - (x / rect.width) * 100) + '%');
-                    inner.style.setProperty('--gloss-y', (100 - (y / rect.height) * 100) + '%');
-                });
-                wrapper.addEventListener('mouseleave', () => {
-                    wrapper.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
-                    inner.style.setProperty('--gloss-x', '170%');
-                    inner.style.setProperty('--gloss-y', '170%');
-                });
-            }
+            if (!inner) return;
+
+            wrapper.addEventListener('mousemove', (e) => {
+                const rect = wrapper.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const rx = ((y / rect.height) - 0.5) * -28;
+                const ry = ((x / rect.width) - 0.5) * 28;
+                wrapper.style.transform = 'scale(1.14) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)';
+                inner.style.setProperty('--gloss-x', (100 - (x / rect.width) * 100) + '%');
+                inner.style.setProperty('--gloss-y', (100 - (y / rect.height) * 100) + '%');
+            });
+
+            wrapper.addEventListener('mouseleave', () => {
+                wrapper.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
+                inner.style.setProperty('--gloss-x', '170%');
+                inner.style.setProperty('--gloss-y', '170%');
+            });
+        }
+
+        // Auto-detect engine watches the container for newly pasted cards
+        const containerNode = document.getElementById('mainCardContainer');
+        const layoutObserver = new MutationObserver((mutations) => {
+            containerNode.querySelectorAll('.neon-border-wrapper').forEach(attachTiltEffect);
         });
+
+        layoutObserver.observe(containerNode, { childList: true, subtree: true });
     </script>
 </body>
 </html>

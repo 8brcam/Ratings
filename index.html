@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Team Shield Matrix</title>
+    <title>Ultimate Team Grid Engine</title>
     <style id="themeStylesheet">
         :root {
             --bg-color: #02040a;
@@ -30,14 +30,15 @@
             min-height: 100vh;
             box-sizing: border-box;
         }
-        /* --- SIDE-BY-SIDE FLEX CONTAINER --- */
+
+        /* --- THE EVEN SHIELD MULTI-CARD WRAPPER --- */
         .card-container {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 50px; /* Safe distance to allow 1.14x hover scale zoom */
+            gap: 50px; /* Provides spacing clearance for 1.14x scaling on hover */
             perspective: 1500px;
             width: 100%;
         }
@@ -91,6 +92,7 @@
             box-sizing: border-box;
             z-index: 2;
         }
+
         .card-inner::after {
             content: "";
             position: absolute;
@@ -205,89 +207,9 @@
     </style>
 </head>
 <body>
-    <div class="card-container">
-        
-        <!-- CARD 1 CORE CODE -->
-        <div class="neon-border-wrapper">
-            <div class="fut-card">
-                <div class="card-inner" style="--gloss-x: 170%; --gloss-y: 170%;">
-                    
-                    <div class="card-top">
-                        <div class="badge-ovr">
-                            <span class="ovr-txt">94</span>
-                            <span class="pos-txt">ST</span>
-                            <span style="font-size: 22px; line-height: 1; margin: 4px 0; display: inline-block; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));">🇵🇹</span>
-                            <svg class="club-icon" viewBox="0 0 100 100" xmlns="http://w3.org">
-                                <circle cx="50" cy="50" r="45" fill="#000"></circle><circle cx="50" cy="50" r="20" fill="#fff"></circle>
-                            </svg>
-                        </div>
-                        <div class="avatar-placeholder">
-                            <img src="https://nocookie.net" alt="Render Asset">
-                        </div>
-                    </div>
 
-                    <div class="name-box">
-                        <h2 class="player-name">CRISTIANO</h2>
-                    </div>
-
-                    <div class="stats-grid">
-                        <div class="stat-column">
-                            <div class="stat-item"><span class="stat-val">88</span><span class="stat-label">PAC</span></div>
-                            <div class="stat-item"><span class="stat-val">93</span><span class="stat-label">SHO</span></div>
-                            <div class="stat-item"><span class="stat-val">82</span><span class="stat-label">PAS</span></div>
-                        </div>
-                        <div class="stats-vertical-divider"></div>
-                        <div class="stat-column">
-                            <div class="stat-item"><span class="stat-val">88</span><span class="stat-label">DRI</span></div>
-                            <div class="stat-item"><span class="stat-val">38</span><span class="stat-label">DEF</span></div>
-                            <div class="stat-item"><span class="stat-val">78</span><span class="stat-label">PHY</span></div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!-- CARD 2 CORE CODE (Simply duplicate this block to add Card 3, 4, 5, etc.) -->
-        <div class="neon-border-wrapper">
-            <div class="fut-card">
-                <div class="card-inner" style="--gloss-x: 170%; --gloss-y: 170%;">
-                    
-                    <div class="card-top">
-                        <div class="badge-ovr">
-                            <span class="ovr-txt">90</span>
-                            <span class="pos-txt">LW</span>
-                            <span style="font-size: 22px; line-height: 1; margin: 4px 0; display: inline-block; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));">🇫🇷</span>
-                            <svg class="club-icon" viewBox="0 0 100 100" xmlns="http://w3.org">
-                                <circle cx="50" cy="50" r="45" fill="#000"></circle><circle cx="50" cy="50" r="20" fill="#fff"></circle>
-                            </svg>
-                        </div>
-                        <div class="avatar-placeholder">
-                            <img src="https://nocookie.net" alt="Render Asset">
-                        </div>
-                    </div>
-
-                    <div class="name-box">
-                        <h2 class="player-name">HENRY</h2>
-                    </div>
-
-                    <div class="stats-grid">
-                        <div class="stat-column">
-                            <div class="stat-item"><span class="stat-val">94</span><span class="stat-label">PAC</span></div>
-                            <div class="stat-item"><span class="stat-val">91</span><span class="stat-label">SHO</span></div>
-                            <div class="stat-item"><span class="stat-val">83</span><span class="stat-label">PAS</span></div>
-                        </div>
-                        <div class="stats-vertical-divider"></div>
-                        <div class="stat-column">
-                            <div class="stat-item"><span class="stat-val">92</span><span class="stat-label">DRI</span></div>
-                            <div class="stat-item"><span class="stat-val">53</span><span class="stat-label">DEF</span></div>
-                            <div class="stat-item"><span class="stat-val">80</span><span class="stat-label">PHY</span></div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><style id="themeStylesheet">
+    <!-- 👇 THIS BOX IS COMPLETELY EMPTY AND WAITING FOR YOUR CARDS 👇 -->
+    <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><style id="themeStylesheet">
         :root {
             --bg-color: #02040a;
             --panel-bg: #0b0f19;
@@ -576,16 +498,16 @@
                 });
             }
         </script></body></html>
+    <div class="card-container">
+        
+    </div>
 
-    </div> <!-- Closes .card-container -->
     <script>
-        // Finds all wrappers using querySelectorAll instead of a single instance selector
         const wrappers = document.querySelectorAll('.neon-border-wrapper');
         
         wrappers.forEach(wrapper => {
             const inner = wrapper.querySelector('.card-inner');
             if (wrapper && inner) {
-                // Your exact vector tracking & perspective arithmetic equations applied to each card scope
                 wrapper.addEventListener('mousemove', (e) => {
                     const rect = wrapper.getBoundingClientRect();
                     const x = e.clientX - rect.left;

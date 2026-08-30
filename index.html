@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Team 36-Card Arena Matrix</title>
+    <title>Ultimate Team 36-Card Widescreen Grid</title>
     <style id="themeStylesheet">
         :root {
             --bg-color: #02040a;
@@ -38,7 +38,7 @@
             flex-wrap: wrap; /* Allows slots to wrap down to new rows cleanly */
             justify-content: center;
             align-items: center;
-            gap: 35px 25px; /* Tighter gap to help fit 36 cards on desktop screens */
+            gap: 35px 25px; /* Precise clearance for 1.14x hover scaling */
             perspective: 1500px;
             width: 100%;
             max-width: 1920px; /* Widened to widescreen standard */
@@ -57,7 +57,7 @@
             align-items: center;
             animation: neonPulse 4s linear infinite;
             transform-style: preserve-3d;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+            transition: transform 0.05s linear, box-shadow 0.3s ease;
             clip-path: polygon(0% 8%, 20% 0%, 50% 3%, 80% 0%, 100% 8%, 100% 88%, 50% 100%, 0% 88%);
         }
 
@@ -105,7 +105,7 @@
             mix-blend-mode: color-dodge;
             z-index: 3;
             pointer-events: none;
-            transition: background-position 0.15s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: background-position 0.1s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .card-top {
@@ -206,28 +206,13 @@
         .stat-val { font-size: 22px; font-weight: 900; color: #fff; width: 32px; text-align: left; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
         .stat-label { font-size: 15px; font-weight: 800; color: #ffd84a; text-transform: uppercase; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
         .stats-vertical-divider { width: 2px; height: 68px; background-color: var(--stat-box-border); opacity: 0.75; margin: 0 8px; border-radius: 1px; }
-        
-        .empty-slot-hint {
-            position: absolute;
-            color: #475569;
-            font-size: 12px;
-            text-transform: uppercase;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            pointer-events: none;
-            z-index: 1;
-            text-align: center;
-            padding: 15px;
-            border: 2px dashed #1e293b;
-            border-radius: 12px;
-        }
     </style>
 </head>
 <body>
 
     <div class="card-container" id="mainCardContainer">
-        <!-- SLOT 1 -->
-        <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><style id="themeStylesheet">
+
+        <div class="neon-border-wrapper"><!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><style id="themeStylesheet">
         :root {
             --bg-color: #02040a;
             --panel-bg: #0b0f19;
@@ -459,7 +444,7 @@
         <div class="neon-border-wrapper" id="glowWrapper" style="transform: scale(1) rotateX(0deg) rotateY(0deg);">
             <div class="fut-card" id="cardElement">
                 <!-- Multi-layered Foil Composite Face -->
-                <div class="card-inner" id="cardInnerLayer" style="background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, transparent 45%), linear-gradient(225deg, rgba(0, 0, 0, 0.4) 0%, transparent 55%), conic-gradient(from 145deg at 75% 25%, rgb(180, 83, 9) 0deg, rgb(255, 237, 213) 50deg, rgb(69, 26, 3) 120deg, transparent 190deg), conic-gradient(from 215deg at 35% 65%, rgb(217, 119, 6) 0deg, rgb(43, 17, 2) 80deg, rgb(254, 215, 170) 140deg, transparent 220deg), linear-gradient(rgb(255, 237, 213) 0%, rgb(254, 215, 170) 45%, rgb(69, 26, 3) 55%, rgb(28, 10, 0) 100%); --gloss-x: 170%; --gloss-y: 170%;">
+                <div class="card-inner" id="cardInnerLayer" style="background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, transparent 45%), linear-gradient(225deg, rgba(0, 0, 0, 0.2) 0%, transparent 55%), conic-gradient(from 145deg at 75% 25%, rgb(148, 163, 184) 0deg, rgb(255, 255, 255) 50deg, rgb(71, 85, 105) 120deg, transparent 190deg), conic-gradient(from 215deg at 35% 65%, rgb(203, 213, 225) 0deg, rgb(30, 41, 59) 80deg, rgb(248, 250, 252) 140deg, transparent 220deg), linear-gradient(rgb(241, 245, 249) 0%, rgb(203, 213, 225) 45%, rgb(51, 65, 85) 55%, rgb(15, 23, 42) 100%); --gloss-x: 170%; --gloss-y: 170%;">
                     
                     <div class="card-top">
                         <div class="badge-ovr">
@@ -515,80 +500,33 @@
                     inner.style.setProperty('--gloss-y', '170%');
                 });
             }
-        </script></body></html>
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 1<br>Paste Inside</div></div>
-        <!-- SLOT 2 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 2<br>Paste Inside</div></div>
-        <!-- SLOT 3 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 3<br>Paste Inside</div></div>
-        <!-- SLOT 4 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 4<br>Paste Inside</div></div>
-        <!-- SLOT 5 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 5<br>Paste Inside</div></div>
-        <!-- SLOT 6 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 6<br>Paste Inside</div></div>
-        <!-- SLOT 7 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 7<br>Paste Inside</div></div>
-        <!-- SLOT 8 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 8<br>Paste Inside</div></div>
-        <!-- SLOT 9 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 9<br>Paste Inside</div></div>
-        <!-- SLOT 10 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 10<br>Paste Inside</div></div>
-        <!-- SLOT 11 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 11<br>Paste Inside</div></div>
-        <!-- SLOT 12 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 12<br>Paste Inside</div></div>
-        <!-- SLOT 13 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 13<br>Paste Inside</div></div>
-        <!-- SLOT 14 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 14<br>Paste Inside</div></div>
-        <!-- SLOT 15 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 15<br>Paste Inside</div></div>
-        <!-- SLOT 16 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 16<br>Paste Inside</div></div>
-        <!-- SLOT 17 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 17<br>Paste Inside</div></div>
-        <!-- SLOT 18 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 18<br>Paste Inside</div></div>
-        <!-- SLOT 19 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 19<br>Paste Inside</div></div>
-        <!-- SLOT 20 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 20<br>Paste Inside</div></div>
-        <!-- SLOT 21 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 21<br>Paste Inside</div></div>
-        <!-- SLOT 22 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 22<br>Paste Inside</div></div>
-        <!-- SLOT 23 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 23<br>Paste Inside</div></div>
-        <!-- SLOT 24 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 24<br>Paste Inside</div></div>
-        <!-- SLOT 25 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 25<br>Paste Inside</div></div>
-        <!-- SLOT 26 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 26<br>Paste Inside</div></div>
-        <!-- SLOT 27 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 27<br>Paste Inside</div></div>
-        <!-- SLOT 28 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 28<br>Paste Inside</div></div>
-        <!-- SLOT 29 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 29<br>Paste Inside</div></div>
-        <!-- SLOT 30 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 30<br>Paste Inside</div></div>
-        <!-- SLOT 31 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 31<br>Paste Inside</div></div>
-        <!-- SLOT 32 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 32<br>Paste Inside</div></div>
-        <!-- SLOT 33 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 33<br>Paste Inside</div></div>
-        <!-- SLOT 34 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 34<br>Paste Inside</div></div>
-        <!-- SLOT 35 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 35<br>Paste Inside</div></div>
-        <!-- SLOT 36 -->
-        <div class="neon-border-wrapper"><div class="empty-slot-hint">Slot 36<br>Paste Inside</div></div>
-
-    </div>
+        </script></body></html></div>
+        <div class="neon-border-wrapper">PASTE_CARD_2_HERE</div>
+        <div class="neon-border-wrapper">PASTE_CARD_3_HERE</div>
+        <div class="neon-border-wrapper">PASTE_CARD_4_HERE</div>
+        <div class="neon-border-wrapper">PASTE_CARD_5_HERE</div>
+        <div class="neon-border-wrapper">PASTE_CARD_6_HERE</div>
+        <div class="neon-border-wrapper">PASTE_CARD_7_HERE</div>
+        <div class="neon-border-wrapper">PASTE_CARD_8_HERE</div>
+        <div class="neon-border-wrapper">PASTE_CARD_9_HERE</div>
+        <div class="neon-border-wrapper">PASTE_CARD_10_HERE</div>
+        <div class="neon-border-wrapper">PASTE_CARD_11_HERE</div>
+        <div class="neon-border-wrapper">PASTE_CARD_12_HERE</div>
+        <div class="neon-border-wrapper">PASTE_CARD_13_HERE</div>
+        <div class="neon-border-wrapper">PASTE_CARD_14_HERE</div>
+        <div class="neon-border-wrapper">PASTE_CARD_15_HERE</div>
+        <div class="neon-border-wrapper">PASTE_CARD_16_HERE</div>
+        <div class="neon-border-wrapper">PASTE_CARD_17_HERE</div>
+        <div class="neon-border-wrapper">PASTE_CARD_18_HERE</div>
+        <div class="neon-border-wrapper">PASTE_CARD_19_HERE</div>
+        <div class="neon-border-wrapper">PASTE_CARD_20_HERE</div>
+        <div class="neon-border-wrapper">PASTE_CARD_21_HERE</div>
+        <div class="neon-border-wrapper">PASTE_CARD_22_HERE</div>
+        <div class="neon-border-wrapper">PASTE_CARD_23_HERE</div>
+        <div class="neon-border-wrapper">PASTE_CARD_24_HERE</div>
+        <div class="neon-border-wrapper">PASTE_CARD_25_HERE</div>
+        <div class="neon-border-wrapper">PASTE_CARD_26_HERE</div>
+    </div> <!-- Closes #mainCardContainer safely below your custom slot array -->
 
     <script>
         function attachTiltEffect(wrapper) {
@@ -596,9 +534,6 @@
             
             const inner = wrapper.querySelector('.card-inner');
             if (!inner) return;
-
-            const hint = wrapper.querySelector('.empty-slot-hint');
-            if (hint) hint.remove();
 
             wrapper.dataset.tiltBound = "true";
 
@@ -608,12 +543,17 @@
                 const y = e.clientY - rect.top;
                 const rx = ((y / rect.height) - 0.5) * -28;
                 const ry = ((x / rect.width) - 0.5) * 28;
+                
+                // Forces instant 1-to-1 mouse rendering physics with zero delay
+                wrapper.style.transition = "transform 0.05s linear"; 
                 wrapper.style.transform = 'scale(1.14) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)';
                 inner.style.setProperty('--gloss-x', (100 - (x / rect.width) * 100) + '%');
                 inner.style.setProperty('--gloss-y', (100 - (y / rect.height) * 100) + '%');
             });
 
             wrapper.addEventListener('mouseleave', () => {
+                // Returns smooth transition easing ONLY when resetting back to center position
+                wrapper.style.transition = "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)"; 
                 wrapper.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
                 inner.style.setProperty('--gloss-x', '170%');
                 inner.style.setProperty('--gloss-y', '170%');

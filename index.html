@@ -300,4 +300,25 @@
                 </div>
             </div>
         </div>
-    </body></html>
+    
+        <script>
+            const wrapper = document.querySelector('.neon-border-wrapper');
+            const inner = document.querySelector('.card-inner');
+            if (wrapper && inner) {
+                wrapper.addEventListener('mousemove', (e) => {
+                    const rect = wrapper.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const rx = ((y / rect.height) - 0.5) * -28;
+                    const ry = ((x / rect.width) - 0.5) * 28;
+                    wrapper.style.transform = 'scale(1.14) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)';
+                    inner.style.setProperty('--gloss-x', (100 - (x / rect.width) * 100) + '%');
+                    inner.style.setProperty('--gloss-y', (100 - (y / rect.height) * 100) + '%');
+                });
+                wrapper.addEventListener('mouseleave', () => {
+                    wrapper.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
+                    inner.style.setProperty('--gloss-x', '170%');
+                    inner.style.setProperty('--gloss-y', '170%');
+                });
+            }
+        </script></body></html>

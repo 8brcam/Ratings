@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Ultimate Team Component Matrix</title>
+    <title>Ultimate Team Shield Matrix</title>
     <style id="themeStylesheet">
         :root {
             --bg-color: #02040a;
@@ -30,18 +30,16 @@
             min-height: 100vh;
             box-sizing: border-box;
         }
-        /* --- DUAL SIDE-BY-SIDE FLEX CONTAINER LAYER --- */
+        /* --- SIDE-BY-SIDE FLEX CONTAINER --- */
         .card-container {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 60px; /* Space between cards so they do not clip during 1.14x hover scaling */
+            gap: 50px; /* Safe distance to allow 1.14x hover scale zoom */
             perspective: 1500px;
             width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
         }
 
         .neon-border-wrapper {
@@ -83,6 +81,7 @@
             position: relative;
             width: 100%;
             height: 100%;
+            background-image: linear-gradient(135deg, rgba(255,255,255,0.7) 0%, transparent 45%), linear-gradient(225deg, rgba(0,0,0,0.35) 0%, transparent 55%), conic-gradient(from 145deg at 75% 25%, #cfa81f 0deg, #ffd952 50deg, #594202 120deg, transparent 190deg), conic-gradient(from 215deg at 35% 65%, #b59210 0deg, #402e01 80deg, #ffeba3 140deg, transparent 220deg), conic-gradient(from 55deg at 85% 50%, #9e7a0d 0deg, #fff085 60deg, #302200 140deg, transparent 200deg), conic-gradient(from 290deg at 20% 30%, #302200 0deg, #ebd05b 70deg, #876707 150deg, transparent 230deg), linear-gradient(to bottom, #ffe875 0%, #fced4e 45%, #695105 55%, #382501 100%);
             background-blend-mode: overlay, normal, multiply, overlay, soft-light, normal, normal;
             background-size: 100% 100%;
             clip-path: polygon(0% 8%, 20% 0%, 50% 3%, 80% 0%, 100% 8%, 100% 88%, 50% 100%, 0% 88%);
@@ -92,16 +91,6 @@
             box-sizing: border-box;
             z-index: 2;
         }
-        /* PREMIUM GOLD CHROMATIC FACE MAP */
-        .theme-gold {
-            background-image: linear-gradient(135deg, rgba(255,255,255,0.7) 0%, transparent 45%), linear-gradient(225deg, rgba(0,0,0,0.35) 0%, transparent 55%), conic-gradient(from 145deg at 75% 25%, #cfa81f 0deg, #ffd952 50deg, #594202 120deg, transparent 190deg), conic-gradient(from 215deg at 35% 65%, #b59210 0deg, #402e01 80deg, #ffeba3 140deg, transparent 220deg), conic-gradient(from 55deg at 85% 50%, #9e7a0d 0deg, #fff085 60deg, #302200 140deg, transparent 200deg), conic-gradient(from 290deg at 20% 30%, #302200 0deg, #ebd05b 70deg, #876707 150deg, transparent 230deg), linear-gradient(to bottom, #ffe875 0%, #fced4e 45%, #695105 55%, #382501 100%);
-        }
-
-        /* PREMIUM SILVER CHROMATIC FACE MAP */
-        .theme-silver {
-            background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, transparent 45%), linear-gradient(225deg, rgba(0, 0, 0, 0.2) 0%, transparent 55%), conic-gradient(from 145deg at 75% 25%, rgb(148, 163, 184) 0deg, rgb(255, 255, 255) 50deg, rgb(71, 85, 105) 120deg, transparent 190deg), conic-gradient(from 215deg at 35% 65%, rgb(203, 213, 225) 0deg, rgb(30, 41, 59) 80deg, rgb(248, 250, 252) 140deg, transparent 220deg), linear-gradient(rgb(241, 245, 249) 0%, rgb(203, 213, 225) 45%, rgb(51, 65, 85) 55%, rgb(15, 23, 42) 100%);
-        }
-
         .card-inner::after {
             content: "";
             position: absolute;
@@ -218,80 +207,80 @@
 <body>
     <div class="card-container">
         
-        <!-- CARD 1 MODULE ARCHITECTURE: GOLD ITEM -->
+        <!-- CARD 1 CORE CODE -->
         <div class="neon-border-wrapper">
             <div class="fut-card">
-                <div class="card-inner theme-gold" style="--gloss-x: 170%; --gloss-y: 170%;">
+                <div class="card-inner" style="--gloss-x: 170%; --gloss-y: 170%;">
                     
                     <div class="card-top">
                         <div class="badge-ovr">
-                            <span class="ovr-txt">85</span>
-                            <span class="pos-txt">CUE</span>
+                            <span class="ovr-txt">94</span>
+                            <span class="pos-txt">ST</span>
                             <span style="font-size: 22px; line-height: 1; margin: 4px 0; display: inline-block; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));">🇵🇹</span>
                             <svg class="club-icon" viewBox="0 0 100 100" xmlns="http://w3.org">
                                 <circle cx="50" cy="50" r="45" fill="#000"></circle><circle cx="50" cy="50" r="20" fill="#fff"></circle>
                             </svg>
                         </div>
                         <div class="avatar-placeholder">
-                            <img src="https://nocookie.net" alt="Gold Display Model">
+                            <img src="https://nocookie.net" alt="Render Asset">
                         </div>
                     </div>
 
                     <div class="name-box">
-                        <h2 class="player-name">GOLD ITEM</h2>
+                        <h2 class="player-name">CRISTIANO</h2>
                     </div>
 
                     <div class="stats-grid">
                         <div class="stat-column">
                             <div class="stat-item"><span class="stat-val">88</span><span class="stat-label">PAC</span></div>
-                            <div class="stat-item"><span class="stat-val">84</span><span class="stat-label">SHO</span></div>
-                            <div class="stat-item"><span class="stat-val">81</span><span class="stat-label">PAS</span></div>
+                            <div class="stat-item"><span class="stat-val">93</span><span class="stat-label">SHO</span></div>
+                            <div class="stat-item"><span class="stat-val">82</span><span class="stat-label">PAS</span></div>
                         </div>
                         <div class="stats-vertical-divider"></div>
                         <div class="stat-column">
-                            <div class="stat-item"><span class="stat-val">87</span><span class="stat-label">DRI</span></div>
-                            <div class="stat-item"><span class="stat-val">42</span><span class="stat-label">DEF</span></div>
-                            <div class="stat-item"><span class="stat-val">79</span><span class="stat-label">PHY</span></div>
+                            <div class="stat-item"><span class="stat-val">88</span><span class="stat-label">DRI</span></div>
+                            <div class="stat-item"><span class="stat-val">38</span><span class="stat-label">DEF</span></div>
+                            <div class="stat-item"><span class="stat-val">78</span><span class="stat-label">PHY</span></div>
                         </div>
                     </div>
 
                 </div>
             </div>
         </div>
-        <!-- CARD 2 MODULE ARCHITECTURE: SILVER HERO -->
+        <!-- CARD 2 CORE CODE (Simply duplicate this block to add Card 3, 4, 5, etc.) -->
         <div class="neon-border-wrapper">
             <div class="fut-card">
-                <div class="card-inner theme-silver" style="--gloss-x: 170%; --gloss-y: 170%;">
+                <div class="card-inner" style="--gloss-x: 170%; --gloss-y: 170%;">
                     
                     <div class="card-top">
                         <div class="badge-ovr">
-                            <span class="ovr-txt">71</span>
-                            <span class="pos-txt">CUE</span>
-                            <span style="font-size: 22px; line-height: 1; margin: 4px 0; display: inline-block; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));">🇺🇸</span>
+                            <span class="ovr-txt">90</span>
+                            <span class="pos-txt">LW</span>
+                            <span style="font-size: 22px; line-height: 1; margin: 4px 0; display: inline-block; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));">🇫🇷</span>
                             <svg class="club-icon" viewBox="0 0 100 100" xmlns="http://w3.org">
                                 <circle cx="50" cy="50" r="45" fill="#000"></circle><circle cx="50" cy="50" r="20" fill="#fff"></circle>
                             </svg>
                         </div>
                         <div class="avatar-placeholder">
-                            <img src="https://nocookie.net" alt="Silver Display Model">
+                            <img src="https://nocookie.net" alt="Render Asset">
                         </div>
                     </div>
 
                     <div class="name-box">
-                        <h2 class="player-name">SILVER HERO</h2>
+                        <h2 class="player-name">HENRY</h2>
                     </div>
 
                     <div class="stats-grid">
                         <div class="stat-column">
-                            <div class="stat-item"><span class="stat-val">75</span><span class="stat-label">PAC</span></div>
-                            <div class="stat-item"><span class="stat-val">70</span><span class="stat-label">SHO</span></div>
-                            <div class="stat-item"><span class="stat-val">82</span><span class="stat-label">PAS</span></div>
+                            <div class="stat-item"><span class="stat-val">94</span><span class="stat-label">PAC</span></div>
+                            <div class="stat-item"><span class="stat-val">91</span><span class="stat-label">SHO</span></div>
+                            <div class="stat-item"><span class="stat-val">83</span><span class="stat-label">PAS</span></div>
                         </div>
                         <div class="stats-vertical-divider"></div>
                         <div class="stat-column">
-                            <div class="stat-item"><span class="stat-val">80</span><span class="stat-label">DRI</span></div>
-                            <div class="stat-item"><span class="stat-val">68</span><span class="stat-label">DEF</span></div>
-                            <div class="stat-item"><span class="stat-val">74</span><span class="stat-label">PHY</span></div>
+                            <div class="stat-item"><span class="stat-val">92</span><span class="stat-label">DRI</span></div>
+                            <div class="stat-item"><span class="stat-val">53</span><span class="stat-label">DEF</span></div>
+                            <div class="stat-item"><span class="stat-val">80</span><span class="stat-label">PHY</span></div>
                         </div>
                     </div>
 
@@ -299,29 +288,25 @@
             </div>
         </div>
 
-    </div>
+    </div> <!-- Closes .card-container -->
     <script>
-        // Updated selector parses all target nodes into an iterable array collection
+        // Finds all wrappers using querySelectorAll instead of a single instance selector
         const wrappers = document.querySelectorAll('.neon-border-wrapper');
         
-        // Loop binds unique tracker loops inside each individual component scope
         wrappers.forEach(wrapper => {
             const inner = wrapper.querySelector('.card-inner');
             if (wrapper && inner) {
+                // Your exact vector tracking & perspective arithmetic equations applied to each card scope
                 wrapper.addEventListener('mousemove', (e) => {
                     const rect = wrapper.getBoundingClientRect();
                     const x = e.clientX - rect.left;
                     const y = e.clientY - rect.top;
-                    
-                    // Retaining your exact arithmetic vector formulas
                     const rx = ((y / rect.height) - 0.5) * -28;
                     const ry = ((x / rect.width) - 0.5) * 28;
-                    
                     wrapper.style.transform = 'scale(1.14) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)';
                     inner.style.setProperty('--gloss-x', (100 - (x / rect.width) * 100) + '%');
                     inner.style.setProperty('--gloss-y', (100 - (y / rect.height) * 100) + '%');
                 });
-                
                 wrapper.addEventListener('mouseleave', () => {
                     wrapper.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
                     inner.style.setProperty('--gloss-x', '170%');

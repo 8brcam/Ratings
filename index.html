@@ -498,6 +498,295 @@
                 });
             }
         </script></body></html>
+    <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><style id="themeStylesheet">
+        :root {
+            --bg-color: #02040a;
+            --panel-bg: #0b0f19;
+            --text-color: #f8fafc;
+            --card-text: #050401;
+            --stat-box-border: #946f02;
+            --stat-panel-bg: rgba(30, 20, 1, 0.75);
+            /* Dynamic neon border colors */
+            --neon-start: #00f0ff;
+            --neon-mid: #0066ff;
+            --neon-end: #00f0ff;
+        }
+
+        body {
+            font-family: "Arial Black", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+            background-color: var(--panel-bg);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            max-width: 900px;
+            width: auto;
+            transition: all 0.3s ease;
+        }
+        /* --- THE EVEN SHIELD ARCHITECTURE --- */
+        .card-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1500px;
+        }
+
+        .neon-border-wrapper {
+            position: relative;
+            width: 278px;
+            height: 398px;
+            background: linear-gradient(135deg, var(--neon-start) 0%, var(--neon-mid) 50%, var(--neon-end) 100%);
+            background-size: 200% 200%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: neonPulse 4s linear infinite;
+            transform-style: preserve-3d;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+            clip-path: polygon(0% 8%, 20% 0%, 50% 3%, 80% 0%, 100% 8%, 100% 88%, 50% 100%, 0% 88%);
+        }
+
+        .fut-card {
+            position: relative;
+            width: 272px;
+            height: 392px;
+            display: flex;
+            flex-direction: column;
+            padding: 3px;
+            box-sizing: border-box;
+            z-index: 2;
+            transform: translateZ(35px);
+            clip-path: polygon(0% 8%, 20% 0%, 50% 3%, 80% 0%, 100% 8%, 100% 88%, 50% 100%, 0% 88%);
+        }
+
+        @keyframes neonPulse {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(135deg, rgba(255,255,255,0.7) 0%, transparent 45%), linear-gradient(225deg, rgba(0,0,0,0.35) 0%, transparent 55%), conic-gradient(from 145deg at 75% 25%, #cfa81f 0deg, #ffd952 50deg, #594202 120deg, transparent 190deg), conic-gradient(from 215deg at 35% 65%, #b59210 0deg, #402e01 80deg, #ffeba3 140deg, transparent 220deg), conic-gradient(from 55deg at 85% 50%, #9e7a0d 0deg, #fff085 60deg, #302200 140deg, transparent 200deg), conic-gradient(from 290deg at 20% 30%, #302200 0deg, #ebd05b 70deg, #876707 150deg, transparent 230deg), linear-gradient(to bottom, #ffe875 0%, #fced4e 45%, #695105 55%, #382501 100%);
+            background-blend-mode: overlay, normal, multiply, overlay, soft-light, normal, normal;
+            background-size: 100% 100%;
+            clip-path: polygon(0% 8%, 20% 0%, 50% 3%, 80% 0%, 100% 8%, 100% 88%, 50% 100%, 0% 88%);
+            display: flex;
+            flex-direction: column;
+            padding: 24px 12px 15px 12px;
+            box-sizing: border-box;
+            z-index: 2;
+        }
+
+        .card-inner::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.6) 42%, rgba(255, 248, 194, 0.7) 48%, transparent 56%);
+            background-size: 280% 280%;
+            background-position: var(--gloss-x, 170%) var(--gloss-y, 170%);
+            mix-blend-mode: color-dodge;
+            z-index: 3;
+            pointer-events: none;
+            transition: background-position 0.15s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .card-top {
+            display: flex;
+            height: 135px;
+            width: 100%;
+            margin-top: 5px;
+            position: relative;
+            z-index: 4;
+        }
+        .badge-ovr {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            width: 25%;
+            gap: 2px;
+            padding-top: 5px;
+            border-right: 1px solid rgba(0, 0, 0, 0.08);
+            z-index: 4;
+        }
+        .ovr-txt {
+            font-size: 46px;
+            font-weight: 900;
+            line-height: 38px;
+            letter-spacing: -2px;
+            color: #050401;
+            text-shadow: 0 1px 1px rgba(255,255,255,0.4);
+        }
+        .pos-txt { font-size: 13px; font-weight: 900; text-transform: uppercase; color: #050401; }
+        .club-icon { width: 20px; height: 20px; opacity: 0.85; margin-top: 2px; }
+
+        .avatar-placeholder {
+            width: 75%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            z-index: 4;
+            height: 100%;
+        }
+        .avatar-placeholder svg, .avatar-placeholder img {
+            width: 90%;
+            height: auto;
+            max-height: 115px;
+            object-fit: contain;
+            object-position: center center;
+        }
+
+        .name-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 92%;                       
+            margin: 15px auto 0 auto;
+            padding: 4px 0;
+            z-index: 4;
+            background-color: var(--stat-panel-bg); 
+            border: 2px solid var(--stat-box-border); 
+            border-radius: 8px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+            box-sizing: border-box;
+        }
+        .player-name {
+            text-align: center;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.2px;
+            margin: 0;
+            padding: 3px 10px;
+            color: #ffffff; 
+            text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.95); 
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px;       
+            width: 92%;               
+            margin: 14px auto 0 auto;
+            z-index: 4; 
+            background-color: var(--stat-panel-bg);
+            border-radius: 8px;
+            border: 2px solid var(--stat-box-border); 
+            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.55);
+            box-sizing: border-box;
+        }
+        .stat-column { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+        .stat-item { display: flex; align-items: center; justify-content: flex-start; gap: 10px; line-height: 1.1; width: 100%; }
+        .stat-val { font-size: 22px; font-weight: 900; color: #fff; width: 32px; text-align: left; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
+        .stat-label { font-size: 15px; font-weight: 800; color: #ffd84a; text-transform: uppercase; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
+        .stats-vertical-divider { width: 2px; height: 68px; background-color: var(--stat-box-border); opacity: 0.75; margin: 0 8px; border-radius: 1px; }
+
+        /* --- CONTROL PANEL SIDEBAR --- */
+        .controls-panel { 
+            display: none; /* Hidden by default. Requires /?edit=true parameter string to pop open */
+            flex-direction: column; 
+            gap: 14px; 
+            width: 320px; 
+            border-left: 1px solid #374151; 
+            padding-left: 30px; 
+            max-height: 90vh; 
+            overflow-y: auto; 
+        }
+        h2 { font-family: -apple-system, BlinkMacSystemFont, sans-serif; margin-top: 0; font-size: 24px; border-bottom: 1px solid #475569; padding-bottom: 8px; }
+        .input-group { display: flex; flex-direction: column; gap: 4px; }
+        label { font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 13px; font-weight: 600; color: #94a3b8; }
+        input[type="text"], select, textarea { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background-color: #0f172a; border: 1px solid #475569; color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 15px; outline: none; }
+        .btn-upload { font-family: -apple-system, BlinkMacSystemFont, sans-serif; color: white; border: none; padding: 10px 14px; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; text-align: center; transition: background-color 0.2s; }
+        .slider-row { display: flex; align-items: center; gap: 12px; }
+        input[type="range"] { flex: 1; accent-color: #dca021; cursor: pointer; }
+        .slider-val { width: 30px; text-align: right; font-weight: 700; font-size: 15px; }
+
+        @media (max-width: 768px) {
+            .container { flex-direction: column; align-items: center; }
+            .controls-panel { width: 100%; border-left: none; border-top: 1px solid #374151; padding-left: 0; padding-top: 20px; }
+        }
+    </style></head><body style="background:#02040a; display:flex; justify-content:center; align-items:center; min-height:100vh; margin:0; overflow:hidden;"><div class="card-container" style="perspective: 1500px; display: flex; justify-content: center; align-items: center; width: 100%; height: 100vh;">
+        <!-- Outer Glowing Geometric Frame Wrapper -->
+        <div class="neon-border-wrapper" id="glowWrapper" style="transform: scale(1) rotateX(0deg) rotateY(0deg);">
+            <div class="fut-card" id="cardElement">
+                <!-- Multi-layered Foil Composite Face -->
+                <div class="card-inner" id="cardInnerLayer" style="background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, transparent 45%), linear-gradient(225deg, rgba(0, 0, 0, 0.4) 0%, transparent 55%), conic-gradient(from 145deg at 75% 25%, rgb(180, 83, 9) 0deg, rgb(255, 237, 213) 50deg, rgb(69, 26, 3) 120deg, transparent 190deg), conic-gradient(from 215deg at 35% 65%, rgb(217, 119, 6) 0deg, rgb(43, 17, 2) 80deg, rgb(254, 215, 170) 140deg, transparent 220deg), linear-gradient(rgb(255, 237, 213) 0%, rgb(254, 215, 170) 45%, rgb(69, 26, 3) 55%, rgb(28, 10, 0) 100%); --gloss-x: 170%; --gloss-y: 170%;">
+                    
+                    <div class="card-top">
+                        <div class="badge-ovr">
+                            <span class="ovr-txt" id="cardOvr">55</span>
+                            <span class="pos-txt" id="cardPos">CUE</span>
+                            <span id="cardFlag" style="font-size: 22px; line-height: 1; margin: 4px 0; display: inline-block; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));">🇺🇸</span>
+                            <svg class="club-icon" viewBox="0 0 100 100" xmlns="http://w3.org">
+                                <circle cx="50" cy="50" r="45" fill="#000"></circle><circle cx="50" cy="50" r="20" fill="#fff"></circle>
+                            </svg>
+                        </div>
+                        <div class="avatar-placeholder" id="avatarPlaceholder"><img src="data:image/png;base64,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" style="width: 90%; height: auto; max-height: 115px; object-fit: contain; object-position: center center; z-index: 4; position: relative;"></div>
+                    </div>
+                    
+                    <div class="name-box">
+                        <div class="player-name" id="cardName">Bren</div>
+                    </div>
+                    
+                    <div class="stats-grid" id="statsGridElement">
+                        <div class="stat-column">
+                            <div class="stat-item"><span class="stat-val" id="cardAgg">41</span><span class="stat-label">AGG</span></div>
+                            <div class="stat-item"><span class="stat-val" id="cardCtr">44</span><span class="stat-label">CTR</span></div>
+                            <div class="stat-item"><span class="stat-val" id="cardSel">44</span><span class="stat-label">SEL</span></div>
+                        </div>
+                        <div class="stats-vertical-divider"></div>
+                        <div class="stat-column">
+                            <div class="stat-item"><span class="stat-val" id="cardPot">70</span><span class="stat-label">POT</span></div>
+                            <div class="stat-item"><span class="stat-val" id="cardSaf">55</span><span class="stat-label">SAF</span></div>
+                            <div class="stat-item"><span class="stat-val" id="cardTem">73</span><span class="stat-label">TEM</span></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <script>
+            const wrapper = document.querySelector('.neon-border-wrapper');
+            const inner = document.querySelector('.card-inner');
+            if (wrapper && inner) {
+                wrapper.addEventListener('mousemove', (e) => {
+                    const rect = wrapper.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const rx = ((y / rect.height) - 0.5) * -28;
+                    const ry = ((x / rect.width) - 0.5) * 28;
+                    wrapper.style.transform = 'scale(1.14) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)';
+                    inner.style.setProperty('--gloss-x', (100 - (x / rect.width) * 100) + '%');
+                    inner.style.setProperty('--gloss-y', (100 - (y / rect.height) * 100) + '%');
+                });
+                wrapper.addEventListener('mouseleave', () => {
+                    wrapper.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
+                    inner.style.setProperty('--gloss-x', '170%');
+                    inner.style.setProperty('--gloss-y', '170%');
+                });
+            }
+        </script></body></html>
     <div class="card-container" id="mainCardContainer">
         
     </div>

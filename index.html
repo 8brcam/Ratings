@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Ultimate Team 36-Card Widescreen Grid</title>
+    <title>Ultimate Team Card Frame Container</title>
     <style id="themeStylesheet">
         :root {
             --bg-color: #02040a;
@@ -11,6 +11,7 @@
             --card-text: #050401;
             --stat-box-border: #946f02;
             --stat-panel-bg: rgba(30, 20, 1, 0.75);
+            /* Dynamic neon border colors */
             --neon-start: #00f0ff;
             --neon-mid: #0066ff;
             --neon-end: #00f0ff;
@@ -21,28 +22,48 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
-            padding: 60px 40px;
+            padding: 40px;
             display: flex;
             justify-content: center;
             align-items: flex-start;
             min-height: 100vh;
             box-sizing: border-box;
-            overflow-y: auto; 
+            overflow-y: auto;
         }
 
-        /* --- THE EVEN SHIELD MULTI-CARD WRAPPER GRID --- */
-        .card-container {
+        /* Your exact container panel layout modified to flow rows side-by-side */
+        .master-grid-container {
             display: flex;
-            flex-direction: row; 
-            flex-wrap: wrap; 
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 80px 40px;
             justify-content: center;
             align-items: center;
-            /* WIDENED THE GAP FOR ZERO 3D CLIPPING OR STUTTERING */
-            gap: 80px 60px; 
-            perspective: 2000px; /* Enhanced 3D perspective depth */
+            max-width: 1920px;
             width: 100%;
-            max-width: 2440px; /* Expanded grid container limit */
             margin: 0 auto;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+            background-color: var(--panel-bg);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            width: auto;
+            transition: all 0.3s ease;
+        }
+
+        /* --- THE EVEN SHIELD ARCHITECTURE --- */
+        .card-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1500px;
         }
 
         .neon-border-wrapper {
@@ -209,9 +230,8 @@
     </style>
 </head>
 <body>
-
-    <div class="card-container" id="mainCardContainer">
-        <div class="neon-border-wrapper"><!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><style id="themeStylesheet">
+    <div class="master-grid-container">
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper"><!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><style id="themeStylesheet">
         :root {
             --bg-color: #02040a;
             --panel-bg: #0b0f19;
@@ -499,74 +519,67 @@
                     inner.style.setProperty('--gloss-y', '170%');
                 });
             }
-        </script></body></html></div>
-        <div class="neon-border-wrapper">PASTE_CARD_2_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_3_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_4_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_5_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_6_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_7_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_8_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_9_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_10_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_11_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_12_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_13_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_14_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_15_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_16_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_17_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_18_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_19_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_20_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_21_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_22_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_23_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_24_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_25_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_26_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_27_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_28_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_29_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_30_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_31_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_32_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_33_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_34_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_35_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_36_HERE</div>
-    </div> <!-- Closes .card-container cleanly below all 36 widescreen slot indicators -->
+        </script></body></html></div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_2_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_3_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_4_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_5_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_6_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_7_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_8_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_9_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_10_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_11_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_12_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_13_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_14_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_15_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_16_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_17_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_18_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_19_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_20_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_21_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_22_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_23_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_24_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_25_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_26_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_27_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_28_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_29_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_30_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_31_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_32_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_33_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_34_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_35_HERE</div></div></div>
+        <div class="container"><div class="card-container"><div class="neon-border-wrapper">PASTE_CARD_36_HERE</div></div></div>
+    </div> <!-- Closes .master-grid-container -->
 
     <script>
+        // Select all wrappers across your entire 36-slot layout
         const wrappers = document.querySelectorAll('.neon-border-wrapper');
         
         wrappers.forEach(wrapper => {
             const inner = wrapper.querySelector('.card-inner');
             
-            // Safety break catches unpopulated strings to preserve engine stability
+            // If you haven't pasted a card inside this slot yet, safely skip it
             if (!wrapper || !inner) return;
 
+            // Your exact original buttery 3D interaction logic applied cleanly to each individual slot
             wrapper.addEventListener('mousemove', (e) => {
                 const rect = wrapper.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
                 const rx = ((y / rect.height) - 0.5) * -28;
                 const ry = ((x / rect.width) - 0.5) * 28;
-                
-                // Disables transition delays only while tracking the active user cursor path
-                wrapper.style.transition = 'transform 0s linear, box-shadow 0s linear';
-                inner.style.transition = 'background-position 0s linear';
-                
                 wrapper.style.transform = 'scale(1.14) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)';
                 inner.style.setProperty('--gloss-x', (100 - (x / rect.width) * 100) + '%');
                 inner.style.setProperty('--gloss-y', (100 - (y / rect.height) * 100) + '%');
             });
 
             wrapper.addEventListener('mouseleave', () => {
-                // Returns clean cubic-bezier easing to smooth out center gravity resets
-                wrapper.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease';
-                inner.style.transition = 'background-position 0.15s cubic-bezier(0.25, 1, 0.5, 1)';
-                
                 wrapper.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
                 inner.style.setProperty('--gloss-x', '170%');
                 inner.style.setProperty('--gloss-y', '170%');

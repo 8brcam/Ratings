@@ -30,12 +30,12 @@
             overflow-y: auto; 
         }
 
-        /* Forces all grid cards to arrange cleanly side-by-side in rows */
+        /* Forces all cards to arrange perfectly side-by-side in rows */
         .card-container {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            gap: 65px 40px; /* Perfect safety clearance for 1.14x scaling tilts */
+            gap: 65px 40px; 
             justify-content: center;
             align-items: center;
             perspective: 1500px;
@@ -44,42 +44,26 @@
             margin: 0 auto;
         }
 
-        /* Forces multi-browser rendering engine to treat each drop-in card as an isolated row item */
+        /* Forces each card block to act as an isolated row element with clean sub-pixel anti-aliasing */
         .card-container > * {
             display: inline-flex !important;
             flex-shrink: 0 !important;
             will-change: transform;
             transform-style: preserve-3d;
             isolation: isolate;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
 
-        /* ====== MASTER SHIELD OVERRIDES ====== */
-        /* This completely forces the layers to lock together and prevents the top peek-through glitch */
+        /* GLOBAL CLIP-PATH MASK LOCK: Locks inner and outer card borders perfectly so they can never separate at the top */
         .card-container .neon-border-wrapper, 
-        .card-container [id="glowWrapper"] {
-            position: relative !important;
-            width: 278px !important;
-            height: 398px !important;
-            clip-path: polygon(0% 8%, 20% 0%, 50% 3%, 80% 0%, 100% 8%, 100% 88%, 50% 100%, 0% 88%) !important;
-            -webkit-clip-path: polygon(0% 8%, 20% 0%, 50% 3%, 80% 0%, 100% 8%, 100% 88%, 50% 100%, 0% 88%) !important;
-        }
-
+        .card-container [id="glowWrapper"],
         .card-container .fut-card,
-        .card-container [id="cardElement"] {
-            position: relative !important;
-            width: 272px !important;
-            height: 392px !important;
-            clip-path: polygon(0% 8%, 20% 0%, 50% 3%, 80% 0%, 100% 8%, 100% 88%, 50% 100%, 0% 88%) !important;
-            -webkit-clip-path: polygon(0% 8%, 20% 0%, 50% 3%, 80% 0%, 100% 8%, 100% 88%, 50% 100%, 0% 88%) !important;
-        }
-
+        .card-container [id="cardElement"],
         .card-container .card-inner,
         .card-container [id="cardInnerLayer"] {
-            position: relative !important;
-            width: 100% !important;
-            height: 100% !important;
-            clip-path: polygon(0% 8%, 20% 0%, 50% 3%, 80% 0%, 100% 8%, 100% 88%, 50% 100%, 0% 88%) !important;
-            -webkit-clip-path: polygon(0% 8%, 20% 0%, 50% 3%, 80% 0%, 100% 8%, 100% 88%, 50% 100%, 0% 88%) !important;
+            clip-path: polygon(0% 8%, 20% 0%, 50% 3%, 80% 0%, 100% 8%, 100% 88%, 50% 100%, 0% 88%);
+            -webkit-clip-path: polygon(0% 8%, 20% 0%, 50% 3%, 80% 0%, 100% 8%, 100% 88%, 50% 100%, 0% 88%);
         }
     </style>
 </head>
@@ -325,7 +309,7 @@
         <div class="neon-border-wrapper" id="glowWrapper" style="transform: scale(1) rotateX(0deg) rotateY(0deg);">
             <div class="fut-card" id="cardElement">
                 <!-- Multi-layered Foil Composite Face -->
-                <div class="card-inner" id="cardInnerLayer" style="background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, transparent 45%), linear-gradient(225deg, rgba(0, 0, 0, 0.2) 0%, transparent 55%), conic-gradient(from 145deg at 75% 25%, rgb(148, 163, 184) 0deg, rgb(255, 255, 255) 50deg, rgb(71, 85, 105) 120deg, transparent 190deg), conic-gradient(from 215deg at 35% 65%, rgb(203, 213, 225) 0deg, rgb(30, 41, 59) 80deg, rgb(248, 250, 252) 140deg, transparent 220deg), linear-gradient(rgb(241, 245, 249) 0%, rgb(203, 213, 225) 45%, rgb(51, 65, 85) 55%, rgb(15, 23, 42) 100%); --gloss-x: 170%; --gloss-y: 170%;">
+                <div class="card-inner" id="cardInnerLayer" style="background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, transparent 45%), linear-gradient(225deg, rgba(0, 0, 0, 0.3) 0%, transparent 55%), conic-gradient(from 145deg at 75% 25%, rgb(207, 168, 31) 0deg, rgb(255, 217, 82) 50deg, rgb(89, 66, 2) 120deg, transparent 190deg), conic-gradient(from 215deg at 35% 65%, rgb(181, 146, 16) 0deg, rgb(64, 46, 1) 80deg, rgb(255, 235, 163) 140deg, transparent 220deg), linear-gradient(rgb(255, 232, 117) 0%, rgb(252, 237, 78) 45%, rgb(105, 81, 5) 55%, rgb(56, 37, 1) 100%); --gloss-x: 170%; --gloss-y: 170%;">
                     
                     <div class="card-top">
                         <div class="badge-ovr">
@@ -340,7 +324,7 @@
                     </div>
                     
                     <div class="name-box">
-                        <div class="player-name" id="cardName">jack</div>
+                        <div class="player-name" id="cardName">bob</div>
                     </div>
                     
                     <div class="stats-grid" id="statsGridElement">
@@ -617,7 +601,7 @@
         <div class="neon-border-wrapper" id="glowWrapper" style="transform: scale(1) rotateX(0deg) rotateY(0deg);">
             <div class="fut-card" id="cardElement">
                 <!-- Multi-layered Foil Composite Face -->
-                <div class="card-inner" id="cardInnerLayer" style="background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, transparent 45%), linear-gradient(225deg, rgba(0, 0, 0, 0.3) 0%, transparent 55%), conic-gradient(from 145deg at 75% 25%, rgb(207, 168, 31) 0deg, rgb(255, 217, 82) 50deg, rgb(89, 66, 2) 120deg, transparent 190deg), conic-gradient(from 215deg at 35% 65%, rgb(181, 146, 16) 0deg, rgb(64, 46, 1) 80deg, rgb(255, 235, 163) 140deg, transparent 220deg), linear-gradient(rgb(255, 232, 117) 0%, rgb(252, 237, 78) 45%, rgb(105, 81, 5) 55%, rgb(56, 37, 1) 100%); --gloss-x: 170%; --gloss-y: 170%;">
+                <div class="card-inner" id="cardInnerLayer" style="background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, transparent 45%), linear-gradient(225deg, rgba(0, 0, 0, 0.2) 0%, transparent 55%), conic-gradient(from 145deg at 75% 25%, rgb(148, 163, 184) 0deg, rgb(255, 255, 255) 50deg, rgb(71, 85, 105) 120deg, transparent 190deg), conic-gradient(from 215deg at 35% 65%, rgb(203, 213, 225) 0deg, rgb(30, 41, 59) 80deg, rgb(248, 250, 252) 140deg, transparent 220deg), linear-gradient(rgb(241, 245, 249) 0%, rgb(203, 213, 225) 45%, rgb(51, 65, 85) 55%, rgb(15, 23, 42) 100%); --gloss-x: 170%; --gloss-y: 170%;">
                     
                     <div class="card-top">
                         <div class="badge-ovr">
@@ -632,7 +616,7 @@
                     </div>
                     
                     <div class="name-box">
-                        <div class="player-name" id="cardName">jack</div>
+                        <div class="player-name" id="cardName">bob</div>
                     </div>
                     
                     <div class="stats-grid" id="statsGridElement">
@@ -693,7 +677,7 @@
         document.addEventListener("DOMContentLoaded", () => {
             const container = document.getElementById("mainCardContainer");
 
-            // 1. EXTRACT FROM NESTED CLIPBOARD TAGS
+            // 1. EXTRACT CARD BLOCKS FROM CLIPBOARD PAGES
             const nestedWrappers = container.querySelectorAll('.neon-border-wrapper, [id="glowWrapper"]');
             nestedWrappers.forEach(card => {
                 if (card.parentNode !== container) {
@@ -701,34 +685,34 @@
                 }
             });
 
-            // Clean away empty structural residues left by the clipboard pages
+            // Clean away leftover document hulls from clipboard copies
             Array.from(container.children).forEach(child => {
                 if (!child.classList.contains('neon-border-wrapper') && child.id !== 'glowWrapper') {
                     child.remove();
                 }
             });
 
-            // 2. BACKDROP ARCHITECTURE PROTECTION REGISTRY
+            // 2. BACKDROP CODES PRESETS REGISTRY
             const presets = {
                 gold: `linear-gradient(135deg, rgba(255,255,255,0.7) 0%, transparent 45%), linear-gradient(225deg, rgba(0,0,0,0.35) 0%, transparent 55%), conic-gradient(from 145deg at 75% 25%, #cfa81f 0deg, #ffd952 50deg, #594202 120deg, transparent 190deg), conic-gradient(from 215deg at 35% 65%, #b59210 0deg, #402e01 80deg, #ffeba3 140deg, transparent 220deg), conic-gradient(from 55deg at 85% 50%, #9e7a0d 0deg, #fff085 60deg, #302200 140deg, transparent 200deg), conic-gradient(from 290deg at 20% 30%, #302200 0deg, #ebd05b 70deg, #876707 150deg, transparent 230deg), linear-gradient(to bottom, #ffe875 0%, #fced4e 45%, #695105 55%, #382501 100%)`,
                 silver: `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, transparent 45%), linear-gradient(225deg, rgba(0,0,0,0.2) 0%, transparent 55%), conic-gradient(from 145deg at 75% 25%, #94a3b8 0deg, #ffffff 50deg, #475569 120deg, transparent 190deg), conic-gradient(from 215deg at 35% 65%, #cbd5e1 0deg, #1e293b 80deg, #f8fafc 140deg, transparent 220deg), linear-gradient(to bottom, #f1f5f9 0%, #cbd5e1 45%, #334155 55%, #0f172a 100%)`,
                 bronze: `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 45%), linear-gradient(225deg, rgba(0,0,0,0.4) 0%, transparent 55%), conic-gradient(from 145deg at 75% 25%, #b45309 0deg, #ffedd5 50deg, #451a03 120deg, transparent 190deg), conic-gradient(from 215deg at 35% 65%, #d97706 0deg, #2b1102 80deg, #fed7aa 140deg, transparent 220deg), linear-gradient(to bottom, #ffedd5 0%, #fed7aa 45%, #451a03 55%, #1c0a00 100%)`
             };
 
-            // 3. SECURE MUTATED CORE CONTROLLER BINDINGS
+            // 3. SECURE BINDING PHYSICS LOOPS VIA EVENT OBJECTS
             const finalWrappers = container.querySelectorAll('.neon-border-wrapper, [id="glowWrapper"]');
             
             finalWrappers.forEach((wrapper) => {
                 const innerLayer = wrapper.querySelector('.card-inner, [id="cardInnerLayer"]');
                 if (!innerLayer) return;
 
-                // Lock down proper color schemes to fix Card 1 background loss
+                // Protect background textures from being destroyed by sheet overwrites
                 const checkContent = wrapper.innerHTML.toLowerCase();
                 if (checkContent.includes('bronze')) innerLayer.style.backgroundImage = presets.bronze;
                 else if (checkContent.includes('silver')) innerLayer.style.backgroundImage = presets.silver;
                 else innerLayer.style.backgroundImage = presets.gold;
 
-                // Multi-card localized event loop mapping physics
+                // Exact editor single-card movement physics engine
                 wrapper.addEventListener('mousemove', (e) => {
                     const currentWrapper = e.currentTarget;
                     const currentInner = currentWrapper.querySelector('.card-inner, [id="cardInnerLayer"]');

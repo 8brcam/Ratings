@@ -1,147 +1,317 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Ultimate Team Grid Engine</title>
-    <style id="themeStylesheet">
-        :root {
-            --bg-color: #02040a;
-            --panel-bg: #0b0f19;
-            --text-color: #f8fafc;
-            --card-text: #050401;
-            --stat-box-border: #946f02;
-            --stat-panel-bg: rgba(30, 20, 1, 0.75);
-            /* Dynamic neon border colors */
-            --neon-start: #00f0ff;
-            --neon-mid: #0066ff;
-            --neon-end: #00f0ff;
-        }
+<meta charset="UTF-8">
+<title>Ultimate Team Grid Engine</title>
+<style id="themeStylesheet">
+:root {
+  --bg-color: #02040a;
+  --panel-bg: #0b0f19;
+  --text-color: #f8fafc;
+  --card-text: #050401;
+  --stat-box-border: #946f02;
+  --stat-panel-bg: rgba(30, 20, 1, 0.75);
+  /* Dynamic neon border colors */
+  --neon-start: #00f0ff;
+  --neon-mid: #0066ff;
+  --neon-end: #00f0ff;
+  
+  /* Glossary-specific tokens */
+  --glossary-bg: #0f172a;
+  --glossary-border: #1e293b;
+  --accent-color: #ffd952;
+}
+body {
+  font-family: "Arial Black", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column; /* Stacked layout to accommodate the top panel cleanly */
+  align-items: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
 
-        body {
-            font-family: "Arial Black", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 60px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-            box-sizing: border-box;
-            overflow-y: auto; 
-        }
+/* Stat Explanations Header Panel */
+.stat-glossary {
+  background: var(--glossary-bg);
+  border: 1px solid var(--glossary-border);
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 1200px;
+  width: 100%;
+  margin-bottom: 50px;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.glossary-title {
+  font-family: "Arial Black", sans-serif;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  margin-top: 0;
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+.glossary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+.glossary-item {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 12px 16px;
+  border-radius: 8px;
+  border-left: 3px solid var(--accent-color);
+}
+.glossary-item strong {
+  font-family: "Arial Black", sans-serif;
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+  color: #fff;
+}
+.glossary-item p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  line-height: 1.4;
+}
 
-        /* Forces all pasted card wrappers to sit perfectly side-by-side in rows */
-        .card-container {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            gap: 65px 40px; /* Spacing so zoomed cards don't collide */
-            justify-content: center;
-            align-items: center;
-            perspective: 1500px;
-            max-width: 1920px;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        .card-container .neon-border-wrapper,
-        .card-container [id="glowWrapper"] {
-            display: inline-flex !important;
-            flex-shrink: 0 !important;
-            /* Core browser rendering layer optimizations */
-            will-change: transform;
-            transform-style: preserve-3d;
-            isolation: isolate;
-        }
-    </style>
+/* Forces all pasted card wrappers to sit perfectly side-by-side in rows */
+.card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 65px 40px; /* Spacing so zoomed cards don't collide */
+  justify-content: center;
+  align-items: center;
+  perspective: 1500px;
+  max-width: 1920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.card-container .neon-border-wrapper, .card-container [id="glowWrapper"] {
+  display: inline-flex !important;
+  flex-shrink: 0 !important;
+  /* Core browser rendering layer optimizations */
+  will-change: transform;
+  transform-style: preserve-3d;
+  isolation: isolate;
+}
+</style>
 </head>
 <body>
-    <div class="card-container" id="mainCardContainer">
-        <!-- Card Slot 1 -->
-        <!-- PASTE YOUR FIRST FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
 
-
-        <!-- Card Slot 2 -->
-        <!-- PASTE YOUR SECOND FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
-
-
-        <!-- Card Slot 3 -->
-        <!-- PASTE YOUR THIRD FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
-
-
-        <!-- Card Slot 4 -->
-        <!-- PASTE YOUR FOURTH FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
-
+  <!-- Pool Stat Glossary Section -->
+  <section class="stat-glossary">
+    <h2 class="glossary-title">Cue Sports Attribute Index</h2>
+    <div class="glossary-grid">
+      <div class="glossary-item">
+        <strong>AGG (Aggression)</strong>
+        <p>Tendency to attempt highly difficult pots, power breaks, and risky splitting of clusters over tactical play.</p>
+      </div>
+      <div class="glossary-item">
+        <strong>CTR (Control)</strong>
+        <p>Precision of cue ball positioning, spin application (cue top/bottom/side), and speed management between shots.</p>
+      </div>
+      <div class="glossary-item">
+        <strong>SEL (Shot Selection)</strong>
+        <p>Decision-making quality, path routing optimization, and choosing the smartest tactical target on the table.</p>
+      </div>
+      <div class="glossary-item">
+        <strong>POT (Potting)</strong>
+        <p>Raw pocketing accuracy on straight, cut, and long distance shots into both corner and middle pockets.</p>
+      </div>
+      <div class="glossary-item">
+        <strong>SAF (Safety)</strong>
+        <p>Ability to execute snookers, tight containment shots, and leave opponents hook-blocked or without a clear angle.</p>
+      </div>
+      <div class="glossary-item">
+        <strong>TEM (Temperament)</strong>
+        <p>Performance consistency under high match pressure, clearing up when on a hill-hill frame, and bounce-back resilience.</p>
+      </div>
     </div>
+  </section>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const container = document.getElementById("mainCardContainer");
-            
-            // Clean up any accidental nested container loops
-            Array.from(container.children).forEach(item => {
-                if (item.classList.contains('card-container')) {
-                    while (item.firstChild) {
-                        container.appendChild(item.firstChild);
-                    }
-                    item.remove();
-                }
-            });
+  <div class="card-container" id="mainCardContainer">
+    <!-- Card Slot 1 -->
+    <!-- PASTE YOUR FIRST FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
 
-            const presets = {
-                gold: `linear-gradient(135deg, rgba(255,255,255,0.7) 0%, transparent 45%), linear-gradient(225deg, rgba(0,0,0,0.35) 0%, transparent 55%), conic-gradient(from 145deg at 75% 25%, #cfa81f 0deg, #ffd952 50deg, #594202 120deg, transparent 190deg), conic-gradient(from 215deg at 35% 65%, #b59210 0deg, #402e01 80deg, #ffeba3 140deg, transparent 220deg), conic-gradient(from 55deg at 85% 50%, #9e7a0d 0deg, #fff085 60deg, #302200 140deg, transparent 200deg), conic-gradient(from 290deg at 20% 30%, #302200 0deg, #ebd05b 70deg, #876707 150deg, transparent 230deg), linear-gradient(to bottom, #ffe875 0%, #fced4e 45%, #695105 55%, #382501 100%)`,
-                silver: `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, transparent 45%), linear-gradient(225deg, rgba(0,0,0,0.2) 0%, transparent 55%), conic-gradient(from 145deg at 75% 25%, #94a3b8 0deg, #ffffff 50deg, #475569 120deg, transparent 190deg), conic-gradient(from 215deg at 35% 65%, #cbd5e1 0deg, #1e293b 80deg, #f8fafc 140deg, transparent 220deg), linear-gradient(to bottom, #f1f5f9 0%, #cbd5e1 45%, #334155 55%, #0f172a 100%)`,
-                bronze: `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 45%), linear-gradient(225deg, rgba(0,0,0,0.4) 0%, transparent 55%), conic-gradient(from 145deg at 75% 25%, #b45309 0deg, #ffedd5 50deg, #451a03 120deg, transparent 190deg), conic-gradient(from 215deg at 35% 65%, #d97706 0deg, #2b1102 80deg, #fed7aa 140deg, transparent 220deg), linear-gradient(to bottom, #ffedd5 0%, #fed7aa 45%, #451a03 55%, #1c0a00 100%)`
-            };
+    <!-- Card Slot 2 -->
+    <!-- PASTE YOUR SECOND FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
 
-            const wrappers = document.querySelectorAll('[id="glowWrapper"], .neon-border-wrapper');
-            
-            wrappers.forEach((wrapper) => {
-                const innerLayer = wrapper.querySelector('[id="cardInnerLayer"], .card-inner');
-                if (!innerLayer) return;
+    <!-- Card Slot 3 -->
+    <!-- PASTE YOUR THIRD FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
 
-                // Secure visual backdrops to prevent stylesheet clashing bugs
-                if (!innerLayer.style.backgroundImage) {
-                    const txt = wrapper.innerHTML.toLowerCase();
-                    if (txt.includes('bronze')) innerLayer.style.backgroundImage = presets.bronze;
-                    else if (txt.includes('silver')) innerLayer.style.backgroundImage = presets.silver;
-                    else innerLayer.style.backgroundImage = presets.gold;
-                }
+    <!-- Card Slot 4 -->
+    <!-- PASTE YOUR FOURTH FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+    
+    <!-- Card Slot 5 -->
+    <!-- PASTE YOUR SECOND FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
 
-                // DIRECT LINK INTERACTION LOOP: Uses event target context to destroy frame delay completely
-                wrapper.addEventListener('mousemove', (e) => {
-                    const currentWrapper = e.currentTarget;
-                    const currentInner = currentWrapper.querySelector('[id="cardInnerLayer"], .card-inner');
-                    if (!currentInner) return;
+    <!-- Card Slot 6 -->
+    <!-- PASTE YOUR THIRD FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
 
-                    const rect = currentWrapper.getBoundingClientRect();
-                    const x = e.clientX - rect.left; 
-                    const y = e.clientY - rect.top; 
-                    
-                    // Exact editor single-card tilt matrix physics
-                    const rotateX = ((y / rect.height) - 0.5) * -28; 
-                    const rotateY = ((x / rect.width) - 0.5) * 28;
-                    currentWrapper.style.transform = `scale(1.14) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-                    
-                    // Exact editor single-card mirror percentage mapping equations
-                    const glossX = (x / rect.width) * 100;
-                    const glossY = (y / rect.height) * 100;
-                    currentInner.style.setProperty('--gloss-x', `${100 - glossX}%`);
-                    currentInner.style.setProperty('--gloss-y', `${100 - glossY}%`);
-                });
+    <!-- Card Slot 7 -->
+    <!-- PASTE YOUR FOURTH FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+    
+    <!-- Card Slot 8 -->
+    <!-- PASTE YOUR FIRST FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
 
-                wrapper.addEventListener('mouseleave', (e) => {
-                    const currentWrapper = e.currentTarget;
-                    const currentInner = currentWrapper.querySelector('[id="cardInnerLayer"], .card-inner');
-                    currentWrapper.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
-                    if (currentInner) {
-                        currentInner.style.setProperty('--gloss-x', '170%');
-                        currentInner.style.setProperty('--gloss-y', '170%');
-                    }
-                });
-            });
-        });
-    </script>
+    <!-- Card Slot 9 -->
+    <!-- PASTE YOUR SECOND FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+
+    <!-- Card Slot 10 -->
+    <!-- PASTE YOUR THIRD FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+
+    <!-- Card Slot 11 -->
+    <!-- PASTE YOUR FOURTH FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+    
+    <!-- Card Slot 12 -->
+    <!-- PASTE YOUR SECOND FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+
+    <!-- Card Slot 13 -->
+    <!-- PASTE YOUR THIRD FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+
+    <!-- Card Slot 14 -->
+    <!-- PASTE YOUR FOURTH FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+    
+    <!-- Card Slot 15 -->
+    <!-- PASTE YOUR FIRST FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+
+    <!-- Card Slot 16 -->
+    <!-- PASTE YOUR SECOND FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+
+    <!-- Card Slot 17 -->
+    <!-- PASTE YOUR THIRD FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+
+    <!-- Card Slot 18 -->
+    <!-- PASTE YOUR FOURTH FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+    
+    <!-- Card Slot 19 -->
+    <!-- PASTE YOUR SECOND FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+
+    <!-- Card Slot 20 -->
+    <!-- PASTE YOUR THIRD FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+
+    <!-- Card Slot 21 -->
+    <!-- PASTE YOUR FOURTH FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+    
+    <!-- Card Slot 22 -->
+    <!-- PASTE YOUR FIRST FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+
+    <!-- Card Slot 23 -->
+    <!-- PASTE YOUR SECOND FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+
+    <!-- Card Slot 24 -->
+    <!-- PASTE YOUR THIRD FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+
+    <!-- Card Slot 25 -->
+    <!-- PASTE YOUR FOURTH FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+    
+    <!-- Card Slot 26 -->
+    <!-- PASTE YOUR SECOND FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+
+    <!-- Card Slot 27 -->
+    <!-- PASTE YOUR THIRD FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+
+    <!-- Card Slot 28 -->
+    <!-- PASTE YOUR FOURTH FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+          
+    <!-- Card Slot 29 -->
+    <!-- PASTE YOUR FIRST FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+
+    <!-- Card Slot 30 -->
+    <!-- PASTE YOUR SECOND FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+
+    <!-- Card Slot 31 -->
+    <!-- PASTE YOUR THIRD FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+
+    <!-- Card Slot 32 -->
+    <!-- PASTE YOUR FOURTH FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+    
+    <!-- Card Slot 33 -->
+    <!-- PASTE YOUR SECOND FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+
+    <!-- Card Slot 34 -->
+    <!-- PASTE YOUR THIRD FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+
+    <!-- Card Slot 35 -->
+    <!-- PASTE YOUR FOURTH FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+          
+    <!-- Card Slot 36 -->
+    <!-- PASTE YOUR FOURTH FULL COPIED CARD CODE BUNDLE DIRECTLY BELOW THIS LINE -->
+  </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("mainCardContainer");
+  // Clean up any accidental nested container loops
+  Array.from(container.children).forEach(item => {
+    if (item.classList.contains('card-container')) {
+      while (item.firstChild) {
+        container.appendChild(item.firstChild);
+      }
+      item.remove();
+    }
+  });
+
+  const presets = {
+    gold: `linear-gradient(135deg, rgba(255,255,255,0.7) 0%, transparent 45%), linear-gradient(225deg, rgba(0,0,0,0.35) 0%, transparent 55%), conic-gradient(from 145deg at 75% 25%, #cfa81f 0deg, #ffd952 50deg, #594202 120deg, transparent 190deg), conic-gradient(from 215deg at 35% 65%, #b59210 0deg, #402e01 80deg, #ffeba3 140deg, transparent 220deg), conic-gradient(from 55deg at 85% 50%, #9e7a0d 0deg, #fff085 60deg, #302200 140deg, transparent 200deg), conic-gradient(from 290deg at 20% 30%, #302200 0deg, #ebd05b 70deg, #876707 150deg, transparent 230deg), linear-gradient(to bottom, #ffe875 0%, #fced4e 45%, #695105 55%, #382501 100%)`,
+    silver: `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, transparent 45%), linear-gradient(225deg, rgba(0,0,0,0.2) 0%, transparent 55%), conic-gradient(from 145deg at 75% 25%, #94a3b8 0deg, #ffffff 50deg, #475569 120deg, transparent 190deg), conic-gradient(from 215deg at 35% 65%, #cbd5e1 0deg, #1e293b 80deg, #f8fafc 140deg, transparent 220deg), linear-gradient(to bottom, #f1f5f9 0%, #cbd5e1 45%, #334155 55%, #0f172a 100%)`,
+    bronze: `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 45%), linear-gradient(225deg, rgba(0,0,0,0.4) 0%, transparent 55%), conic-gradient(from 145deg at 75% 25%, #b45309 0deg, #ffedd5 50deg, #451a03 120deg, transparent 190deg), conic-gradient(from 215deg at 35% 65%, #d97706 0deg, #2b1102 80deg, #fed7aa 140deg, transparent 220deg), linear-gradient(to bottom, #ffedd5 0%, #fed7aa 45%, #451a03 55%, #1c0a00 100%)`
+  };
+
+  const wrappers = document.querySelectorAll('[id="glowWrapper"], .neon-border-wrapper');
+  wrappers.forEach((wrapper) => {
+    const innerLayer = wrapper.querySelector('[id="cardInnerLayer"], .card-inner');
+    if (!innerLayer) return;
+
+    // Secure visual backdrops to prevent stylesheet clashing bugs
+    if (!innerLayer.style.backgroundImage) {
+      const txt = wrapper.innerHTML.toLowerCase();
+      if (txt.includes('bronze')) innerLayer.style.backgroundImage = presets.bronze;
+      else if (txt.includes('silver')) innerLayer.style.backgroundImage = presets.silver;
+      else innerLayer.style.backgroundImage = presets.gold;
+    }
+
+    // DIRECT LINK INTERACTION LOOP: Uses event target context to destroy frame delay completely
+    wrapper.addEventListener('mousemove', (e) => {
+      const currentWrapper = e.currentTarget;
+      const currentInner = currentWrapper.querySelector('[id="cardInnerLayer"], .card-inner');
+      if (!currentInner) return;
+
+      const rect = currentWrapper.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      // Exact editor single-card tilt matrix physics
+      const rotateX = ((y / rect.height) - 0.5) * -28;
+      const rotateY = ((x / rect.width) - 0.5) * 28;
+      currentWrapper.style.transform = `scale(1.14) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+      // Exact editor single-card mirror percentage mapping equations
+      const glossX = (x / rect.width) * 100;
+      const glossY = (y / rect.height) * 100;
+      currentInner.style.setProperty('--gloss-x', `${100 - glossX}%`);
+      currentInner.style.setProperty('--gloss-y', `${100 - glossY}%`);
+    });
+
+    wrapper.addEventListener('mouseleave', (e) => {
+      const currentWrapper = e.currentTarget;
+      const currentInner = currentWrapper.querySelector('[id="cardInnerLayer"], .card-inner');
+      currentWrapper.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
+      if (currentInner) {
+        currentInner.style.setProperty('--gloss-x', '170%');
+        currentInner.style.setProperty('--gloss-y', '170%');
+      }
+    });
+  });
+});
+</script>
 </body>
 </html>

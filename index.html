@@ -55,15 +55,10 @@
             -webkit-backface-visibility: hidden;
         }
 
-        /* GLOBAL CLIP-PATH MASK LOCK: Locks inner and outer card borders perfectly so they can never separate at the top */
+        /* FIX: Prevents the layers from drifting apart at the top during 3D movements */
         .card-container .neon-border-wrapper, 
-        .card-container [id="glowWrapper"],
-        .card-container .fut-card,
-        .card-container [id="cardElement"],
-        .card-container .card-inner,
-        .card-container [id="cardInnerLayer"] {
-            clip-path: polygon(0% 8%, 20% 0%, 50% 3%, 80% 0%, 100% 8%, 100% 88%, 50% 100%, 0% 88%);
-            -webkit-clip-path: polygon(0% 8%, 20% 0%, 50% 3%, 80% 0%, 100% 8%, 100% 88%, 50% 100%, 0% 88%);
+        .card-container [id="glowWrapper"] {
+            transform-style: flat !important;
         }
     </style>
 </head>
@@ -309,7 +304,7 @@
         <div class="neon-border-wrapper" id="glowWrapper" style="transform: scale(1) rotateX(0deg) rotateY(0deg);">
             <div class="fut-card" id="cardElement">
                 <!-- Multi-layered Foil Composite Face -->
-                <div class="card-inner" id="cardInnerLayer" style="background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, transparent 45%), linear-gradient(225deg, rgba(0, 0, 0, 0.3) 0%, transparent 55%), conic-gradient(from 145deg at 75% 25%, rgb(207, 168, 31) 0deg, rgb(255, 217, 82) 50deg, rgb(89, 66, 2) 120deg, transparent 190deg), conic-gradient(from 215deg at 35% 65%, rgb(181, 146, 16) 0deg, rgb(64, 46, 1) 80deg, rgb(255, 235, 163) 140deg, transparent 220deg), linear-gradient(rgb(255, 232, 117) 0%, rgb(252, 237, 78) 45%, rgb(105, 81, 5) 55%, rgb(56, 37, 1) 100%); --gloss-x: 170%; --gloss-y: 170%;">
+                <div class="card-inner" id="cardInnerLayer" style="background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, transparent 45%), linear-gradient(225deg, rgba(0, 0, 0, 0.2) 0%, transparent 55%), conic-gradient(from 145deg at 75% 25%, rgb(148, 163, 184) 0deg, rgb(255, 255, 255) 50deg, rgb(71, 85, 105) 120deg, transparent 190deg), conic-gradient(from 215deg at 35% 65%, rgb(203, 213, 225) 0deg, rgb(30, 41, 59) 80deg, rgb(248, 250, 252) 140deg, transparent 220deg), linear-gradient(rgb(241, 245, 249) 0%, rgb(203, 213, 225) 45%, rgb(51, 65, 85) 55%, rgb(15, 23, 42) 100%); --gloss-x: 170%; --gloss-y: 170%;">
                     
                     <div class="card-top">
                         <div class="badge-ovr">
@@ -324,7 +319,7 @@
                     </div>
                     
                     <div class="name-box">
-                        <div class="player-name" id="cardName">bob</div>
+                        <div class="player-name" id="cardName">me</div>
                     </div>
                     
                     <div class="stats-grid" id="statsGridElement">
@@ -601,7 +596,7 @@
         <div class="neon-border-wrapper" id="glowWrapper" style="transform: scale(1) rotateX(0deg) rotateY(0deg);">
             <div class="fut-card" id="cardElement">
                 <!-- Multi-layered Foil Composite Face -->
-                <div class="card-inner" id="cardInnerLayer" style="background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, transparent 45%), linear-gradient(225deg, rgba(0, 0, 0, 0.2) 0%, transparent 55%), conic-gradient(from 145deg at 75% 25%, rgb(148, 163, 184) 0deg, rgb(255, 255, 255) 50deg, rgb(71, 85, 105) 120deg, transparent 190deg), conic-gradient(from 215deg at 35% 65%, rgb(203, 213, 225) 0deg, rgb(30, 41, 59) 80deg, rgb(248, 250, 252) 140deg, transparent 220deg), linear-gradient(rgb(241, 245, 249) 0%, rgb(203, 213, 225) 45%, rgb(51, 65, 85) 55%, rgb(15, 23, 42) 100%); --gloss-x: 170%; --gloss-y: 170%;">
+                <div class="card-inner" id="cardInnerLayer" style="background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, transparent 45%), linear-gradient(225deg, rgba(0, 0, 0, 0.3) 0%, transparent 55%), conic-gradient(from 145deg at 75% 25%, rgb(207, 168, 31) 0deg, rgb(255, 217, 82) 50deg, rgb(89, 66, 2) 120deg, transparent 190deg), conic-gradient(from 215deg at 35% 65%, rgb(181, 146, 16) 0deg, rgb(64, 46, 1) 80deg, rgb(255, 235, 163) 140deg, transparent 220deg), linear-gradient(rgb(255, 232, 117) 0%, rgb(252, 237, 78) 45%, rgb(105, 81, 5) 55%, rgb(56, 37, 1) 100%); --gloss-x: 170%; --gloss-y: 170%;">
                     
                     <div class="card-top">
                         <div class="badge-ovr">
@@ -616,7 +611,7 @@
                     </div>
                     
                     <div class="name-box">
-                        <div class="player-name" id="cardName">bob</div>
+                        <div class="player-name" id="cardName">me</div>
                     </div>
                     
                     <div class="stats-grid" id="statsGridElement">

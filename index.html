@@ -31,7 +31,6 @@
             overflow-y: auto; 
         }
 
-        /* Spacing adjusted so cards never collide during 1.14x zoom animations */
         .card-container {
             display: flex;
             flex-direction: row;
@@ -61,9 +60,8 @@
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
             clip-path: polygon(0% 8%, 20% 0%, 50% 3%, 80% 0%, 100% 8%, 100% 88%, 50% 100%, 0% 88%);
             
-            /* CRITICAL CHROME/SAFARI PATCH: Forces rendering engines to isolate color spaces per card */
+            /* CRITICAL: Enforces clean stacking context isolation for Chrome and Safari */
             isolation: isolate;
-            -webkit-transform-style: preserve-3d;
         }
 
         .fut-card {
@@ -99,9 +97,11 @@
             box-sizing: border-box;
             z-index: 2;
             
-            /* CRITICAL HARDWARE ACCELERATION FORCE: Fixes flat color dodge behavior in non-Firefox browsers */
-            transform: translateZ(0);
-            -webkit-transform: translateZ(0);
+            /* FORCE HARDWARE COMPOSITING: Patches flat color-dodge rendering on Chromium engines */
+            transform: translate3d(0, 0, 0);
+            -webkit-transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
 
         .card-inner::after {
@@ -112,9 +112,12 @@
             background-size: 280% 280%;
             background-position: var(--gloss-x, 170%) var(--gloss-y, 170%);
             mix-blend-mode: color-dodge;
-            z-index: 3;
+            z-index: 5;
             pointer-events: none;
             transition: background-position 0.15s cubic-bezier(0.25, 1, 0.5, 1);
+            
+            /* Ensures layer isolation rendering context under 3D transforms */
+            will-change: background-position;
         }
 
         .card-top {
@@ -220,7 +223,7 @@
 <body>
     <div class="card-container" id="mainCardContainer">
         <!-- Card Slot 1 -->
-        <!-- PASTE YOUR FIRST FULL CARD HERE -->
+        <!-- PASTE FULL BUNDLE 1 DIRECTLY BELOW THIS LINE -->
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><style id="themeStylesheet">
         :root {
             --bg-color: #02040a;
@@ -468,7 +471,7 @@
                     </div>
                     
                     <div class="name-box">
-                        <div class="player-name" id="cardName">Minnie</div>
+                        <div class="player-name" id="cardName">Bren</div>
                     </div>
                     
                     <div class="stats-grid" id="statsGridElement">
@@ -512,41 +515,39 @@
         </script></body></html>
 
         <!-- Card Slot 2 -->
-        <!-- PASTE YOUR SECOND FULL CARD HERE -->
+        <!-- PASTE FULL BUNDLE 2 DIRECTLY BELOW THIS LINE -->
 
 
         <!-- Card Slot 3 -->
-        <!-- PASTE YOUR THIRD FULL CARD HERE -->
+        <!-- PASTE FULL BUNDLE 3 DIRECTLY BELOW THIS LINE -->
 
     </div>
 
     <script>
-        // Dynamically binds all card items present on the DOM grid listing
         const gridCardWrappers = document.querySelectorAll('.neon-border-wrapper');
         
         gridCardWrappers.forEach(wrapper => {
             const innerLayer = wrapper.querySelector('.card-inner');
             if (!wrapper || !innerLayer) return;
 
-            // Fuses the exact math engine equations from your single-card editor preview portal
+            // Mirror-matched single editor card animation math values
             wrapper.addEventListener('mousemove', (e) => {
                 const rect = wrapper.getBoundingClientRect();
                 const x = e.clientX - rect.left; 
                 const y = e.clientY - rect.top; 
                 
-                // Pure editor 3D angle scaling physics
                 const rotateX = ((y / rect.height) - 0.5) * -28; 
                 const rotateY = ((x / rect.width) - 0.5) * 28;
+                
+                // Chrome & Safari hardware layers calculation adjustments
                 wrapper.style.transform = `scale(1.14) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
                 
-                // Inverted linear percentage values tracking pointer maps exactly
                 const glossX = (x / rect.width) * 100;
                 const glossY = (y / rect.height) * 100;
                 innerLayer.style.setProperty('--gloss-x', `${100 - glossX}%`);
                 innerLayer.style.setProperty('--gloss-y', `${100 - glossY}%`);
             });
 
-            // Restores default flat baseline properties instantly upon mouse leave
             wrapper.addEventListener('mouseleave', () => {
                 wrapper.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
                 innerLayer.style.setProperty('--gloss-x', '170%');

@@ -31,7 +31,7 @@
             overflow-y: auto; 
         }
 
-        /* Perfect spacing so your cards never collide during 1.14x hover animations */
+        /* Spacing adjusted so cards never collide during 1.14x zoom animations */
         .card-container {
             display: flex;
             flex-direction: row;
@@ -60,6 +60,8 @@
             transform-style: preserve-3d;
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
             clip-path: polygon(0% 8%, 20% 0%, 50% 3%, 80% 0%, 100% 8%, 100% 88%, 50% 100%, 0% 88%);
+            /* CRITICAL FIX: Forces the browser to isolate color dodge blending modes per card item */
+            isolation: isolate;
         }
 
         .fut-card {
@@ -212,7 +214,7 @@
 <body>
     <div class="card-container" id="mainCardContainer">
         <!-- Card Slot 1 -->
-        <!-- PASTE CHUNK 1 DIRECTLY BELOW THIS LINE -->
+        <!-- PASTE FULL BUNDLE 1 DIRECTLY BELOW THIS LINE -->
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><style id="themeStylesheet">
         :root {
             --bg-color: #02040a;
@@ -509,42 +511,40 @@
         </script></body></html>
 
         <!-- Card Slot 2 -->
-        <!-- PASTE CHUNK 2 DIRECTLY BELOW THIS LINE -->
+        <!-- PASTE FULL BUNDLE 2 DIRECTLY BELOW THIS LINE -->
 
 
         <!-- Card Slot 3 -->
-        <!-- PASTE CHUNK 3 DIRECTLY BELOW THIS LINE -->
+        <!-- PASTE FULL BUNDLE 3 DIRECTLY BELOW THIS LINE -->
 
 
         <!-- Card Slot 4 -->
-        <!-- PASTE CHUNK 4 DIRECTLY BELOW THIS LINE -->
+        <!-- PASTE FULL BUNDLE 4 DIRECTLY BELOW THIS LINE -->
 
 
         <!-- Card Slot 5 -->
-        <!-- PASTE CHUNK 5 DIRECTLY BELOW THIS LINE -->
+        <!-- PASTE FULL BUNDLE 5 DIRECTLY BELOW THIS LINE -->
 
 
         <!-- Card Slot 6 -->
-        <!-- PASTE CHUNK 6 DIRECTLY BELOW THIS LINE -->
+        <!-- PASTE FULL BUNDLE 6 DIRECTLY BELOW THIS LINE -->
 
 
         <!-- Card Slot 7 -->
-        <!-- PASTE CHUNK 7 DIRECTLY BELOW THIS LINE -->
+        <!-- PASTE FULL BUNDLE 7 DIRECTLY BELOW THIS LINE -->
 
 
         <!-- Card Slot 8 -->
-        <!-- PASTE CHUNK 8 DIRECTLY BELOW THIS LINE -->
+        <!-- PASTE FULL BUNDLE 8 DIRECTLY BELOW THIS LINE -->
 
 
         <!-- Card Slot 9 -->
-        <!-- PASTE CHUNK 9 DIRECTLY BELOW THIS LINE -->
+        <!-- PASTE FULL BUNDLE 9 DIRECTLY BELOW THIS LINE -->
 
 
         <!-- Card Slot 10 -->
-        <!-- PASTE CHUNK 10 DIRECTLY BELOW THIS LINE -->
+        <!-- PASTE FULL BUNDLE 10 DIRECTLY BELOW THIS LINE -->
 
-
-        <!-- You can repeat this empty gap pattern to paste up to 36 cards cleanly -->
     </div>
 
     <script>
@@ -553,21 +553,25 @@
         
         gridCardWrappers.forEach(wrapper => {
             const innerLayer = wrapper.querySelector('.card-inner');
-            
-            // Safety check: if a slot doesn't have a pasted card block yet, skip it without breaking the page
             if (!wrapper || !innerLayer) return;
 
-            // Applies your exact original smooth tilt scaling and reflection calculations
+            // Tracks the exact mathematical inverse coordinate of the editor shine layer
             wrapper.addEventListener('mousemove', (e) => {
                 const rect = wrapper.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
+                
+                // Calculates the 3D tilt coordinates
                 const rx = ((y / rect.height) - 0.5) * -28;
                 const ry = ((x / rect.width) - 0.5) * 28;
                 
+                // Computes the glare position matching your editor framework exactly
+                const glossX = (x / rect.width) * 100;
+                const glossY = (y / rect.height) * 100;
+                
                 wrapper.style.transform = `scale(1.14) rotateX(${rx}deg) rotateY(${ry}deg)`;
-                innerLayer.style.setProperty('--gloss-x', (100 - (x / rect.width) * 100) + '%');
-                innerLayer.style.setProperty('--gloss-y', (100 - (y / rect.height) * 100) + '%');
+                innerLayer.style.setProperty('--gloss-x', `${100 - glossX}%`);
+                innerLayer.style.setProperty('--gloss-y', `${100 - glossY}%`);
             });
 
             wrapper.addEventListener('mouseleave', () => {

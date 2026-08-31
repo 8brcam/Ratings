@@ -31,12 +31,12 @@
             overflow-y: auto; 
         }
 
-        /* Your exact original container layout running across a multi-card grid */
+        /* Perfect spacing so your cards never collide during 1.14x hover animations */
         .card-container {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            gap: 45px 25px; /* Perfect spacing so your cards never collide on 1.14x zoom */
+            gap: 55px 35px; 
             justify-content: center;
             align-items: center;
             perspective: 1500px;
@@ -74,6 +74,7 @@
             transform: translateZ(35px);
             clip-path: polygon(0% 8%, 20% 0%, 50% 3%, 80% 0%, 100% 8%, 100% 88%, 50% 100%, 0% 88%);
         }
+
         @keyframes neonPulse {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -210,8 +211,9 @@
 </head>
 <body>
     <div class="card-container" id="mainCardContainer">
-        <!-- Grid slots initialized. Paste your exported card HTML modules directly inside any slot -->
-        <div class="neon-border-wrapper"><!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><style id="themeStylesheet">
+        <!-- Card Slot 1 -->
+        <!-- PASTE CHUNK 1 DIRECTLY BELOW THIS LINE -->
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><style id="themeStylesheet">
         :root {
             --bg-color: #02040a;
             --panel-bg: #0b0f19;
@@ -504,73 +506,74 @@
                     inner.style.setProperty('--gloss-y', '170%');
                 });
             }
-        </script></body></html></div>
-        <div class="neon-border-wrapper">PASTE_CARD_2_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_3_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_4_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_5_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_6_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_7_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_8_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_9_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_10_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_11_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_12_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_13_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_14_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_15_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_16_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_17_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_18_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_19_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_20_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_21_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_22_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_23_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_24_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_25_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_26_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_27_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_28_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_29_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_30_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_31_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_32_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_33_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_34_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_35_HERE</div>
-        <div class="neon-border-wrapper">PASTE_CARD_36_HERE</div>
+        </script></body></html>
+
+        <!-- Card Slot 2 -->
+        <!-- PASTE CHUNK 2 DIRECTLY BELOW THIS LINE -->
+
+
+        <!-- Card Slot 3 -->
+        <!-- PASTE CHUNK 3 DIRECTLY BELOW THIS LINE -->
+
+
+        <!-- Card Slot 4 -->
+        <!-- PASTE CHUNK 4 DIRECTLY BELOW THIS LINE -->
+
+
+        <!-- Card Slot 5 -->
+        <!-- PASTE CHUNK 5 DIRECTLY BELOW THIS LINE -->
+
+
+        <!-- Card Slot 6 -->
+        <!-- PASTE CHUNK 6 DIRECTLY BELOW THIS LINE -->
+
+
+        <!-- Card Slot 7 -->
+        <!-- PASTE CHUNK 7 DIRECTLY BELOW THIS LINE -->
+
+
+        <!-- Card Slot 8 -->
+        <!-- PASTE CHUNK 8 DIRECTLY BELOW THIS LINE -->
+
+
+        <!-- Card Slot 9 -->
+        <!-- PASTE CHUNK 9 DIRECTLY BELOW THIS LINE -->
+
+
+        <!-- Card Slot 10 -->
+        <!-- PASTE CHUNK 10 DIRECTLY BELOW THIS LINE -->
+
+
+        <!-- You can repeat this empty gap pattern to paste up to 36 cards cleanly -->
     </div>
 
     <script>
-        // Finds all wrappers using querySelectorAll instead of breaking on a single query
-        const wrappers = document.querySelectorAll('.neon-border-wrapper');
+        // Automatically targets every card module you drop into the list
+        const gridCardWrappers = document.querySelectorAll('.neon-border-wrapper');
         
-        wrappers.forEach(wrapper => {
-            // Your exact original buttery 3D interaction logic applied to each slot independently
-            wrapper.addEventListener('mousemove', (e) => {
-                const inner = wrapper.querySelector('.card-inner');
-                // Dynamic safety check: only trigger calculations if an exported card element exists inside the slot
-                if (!inner) return;
+        gridCardWrappers.forEach(wrapper => {
+            const innerLayer = wrapper.querySelector('.card-inner');
+            
+            // Safety check: if a slot doesn't have a pasted card block yet, skip it without breaking the page
+            if (!wrapper || !innerLayer) return;
 
+            // Applies your exact original smooth tilt scaling and reflection calculations
+            wrapper.addEventListener('mousemove', (e) => {
                 const rect = wrapper.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
                 const rx = ((y / rect.height) - 0.5) * -28;
                 const ry = ((x / rect.width) - 0.5) * 28;
                 
-                wrapper.style.transform = 'scale(1.14) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)';
-                inner.style.setProperty('--gloss-x', (100 - (x / rect.width) * 100) + '%');
-                inner.style.setProperty('--gloss-y', (100 - (y / rect.height) * 100) + '%');
+                wrapper.style.transform = `scale(1.14) rotateX(${rx}deg) rotateY(${ry}deg)`;
+                innerLayer.style.setProperty('--gloss-x', (100 - (x / rect.width) * 100) + '%');
+                innerLayer.style.setProperty('--gloss-y', (100 - (y / rect.height) * 100) + '%');
             });
 
             wrapper.addEventListener('mouseleave', () => {
-                const inner = wrapper.querySelector('.card-inner');
                 wrapper.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
-                if (inner) {
-                    inner.style.setProperty('--gloss-x', '170%');
-                    inner.style.setProperty('--gloss-y', '170%');
-                }
+                innerLayer.style.setProperty('--gloss-x', '170%');
+                innerLayer.style.setProperty('--gloss-y', '170%');
             });
         });
     </script>
